@@ -35,6 +35,11 @@ document.querySelector('#noteEditor').addEventListener('input', event => {
 })
 document.querySelector('#noteEditor').value = localStorage.getItem('textarea')
 
+// 点击下一页
+document.querySelector('#notesList button').addEventListener('click', event => {
+    notes.nextPage()
+})
+
 function publishNote() {
     let content = document.querySelector('#noteEditor').value
     let date = Date.now()
@@ -49,8 +54,9 @@ function Notes() {
     let getNotesUrl = "/notes"
     let postNoteUrl = "/addNotes"
     let notesList = document.querySelector('#notesList')
+    let currentPage = 0;
 
-    init.apply(this)
+    renderOnePageNotes()
 
     this.publishtNote = function (note) {
         fetch(postNoteUrl, {
@@ -69,12 +75,15 @@ function Notes() {
             })
     }
 
-    function init() {
-        getNotes(getNotesUrl, 1)
-            .then(data => {
-                notes = data;
-                showNotes()
-            });
+    this.nextPage = renderOnePageNotes
+
+    function renderOnePageNotes() {
+        currentPage += 1
+        getNotes(getNotesUrl, currentPage)
+        .then(data => {
+            notes.push(...data)
+            showNotes()
+        })
     }
     function getNotes(url, page) {
         return fetch(url+`/${page}`, {
