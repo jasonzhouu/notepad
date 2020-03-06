@@ -10,6 +10,7 @@
 
 // @todo: 发布图片
 // @todo: 发布事件显示精确到分钟
+// @todo: 分页
 
 var md = window.markdownit({
     highlight: function (str, lang) {
@@ -115,8 +116,18 @@ function Notes() {
         return md.render(text);
     }
     function parseDate(date) {
-        date = new Date(date)
-        return date.toLocaleDateString()
+        let dateObject = new Date(date)
+        let dateFormat = ''
+        dateFormat += dateObject.getFullYear()
+        dateFormat += '/'
+        dateFormat += dateObject.getMonth()
+        dateFormat += '/'
+        dateFormat += dateObject.getDate()
+        dateFormat += ' '
+        dateFormat += dateObject.getHours()
+        dateFormat += ':'
+        dateFormat += dateObject.getMinutes()
+        return dateFormat
     }
     function sortNotesByTime() {
         notes = notes.sort((i, j) => {
