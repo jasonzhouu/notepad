@@ -2,9 +2,9 @@
   "name": "notepad",
   "version": "1.0.0",
   "description": "used to post and show short paragraph",
-  "main": "index.js",
+  "main": "server/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ."
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/jasonzhouu/notepad/issues"
   },
-  "homepage": "https://github.com/jasonzhouu/notepad#readme"
+  "homepage": "https://github.com/jasonzhouu/notepad#readme",
+  "devDependencies": {
+    "express": "^4.17.1"
+  }
 }
