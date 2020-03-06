@@ -10,6 +10,7 @@
 // @done: 仿照twitter的时间格式化
 
 // @todo: 输入框禁止缩放
+// @todo: 新添的note下滑出现
 
 var md = window.markdownit({
     highlight: function (str, lang) {
@@ -91,25 +92,29 @@ function Notes() {
         // 开始渲染前，先对notes按发布时间排序
         sortNotesByTime()
 
-        let ul = renderNotes();
+        let ul = renderNotes(notes);
         notesList.replaceChild(ul, notesList.querySelector('ul'));
     }
-    function renderNotes() {
+    function renderNotes(notes) {
         let ul = document.createElement('ul')
         for (const note of notes) {
-            let li = document.createElement('li')
-
-            let noteDOM = document.createElement('p')
-            noteDOM.innerHTML = renderMarkdown(note.content)
-            li.appendChild(noteDOM)
-
-            let dateDOM = document.createElement('span')
-            dateDOM.textContent = parseDate(note.date)
-            li.appendChild(dateDOM)
-
+            let li = renderNote(note)
             ul.appendChild(li)
         }
         return ul
+    }
+    function renderNote(note) {
+        let li = document.createElement('li')
+
+        let noteDOM = document.createElement('p')
+        noteDOM.innerHTML = renderMarkdown(note.content)
+        li.appendChild(noteDOM)
+
+        let dateDOM = document.createElement('span')
+        dateDOM.textContent = parseDate(note.date)
+        li.appendChild(dateDOM)
+
+        return li
     }
     function renderMarkdown(text) {
         return md.render(text);

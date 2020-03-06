@@ -9,7 +9,7 @@ const port = 3000
 // @done: 发布 note
 // @done: 将 markdown 格式的notes渲染成html
 
-// @todo: 分页
+// @todo: 流媒体
 // @todo: 发布图片
 // @todo: 权限系统，需要输入密码登录，或者将输入框不放在主页
 // @todo: 编辑note
