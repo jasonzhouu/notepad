@@ -14,7 +14,7 @@ function Notes() {
     let postNoteUrl = "/addNotes"
     let notesList = document.querySelector('#notesList')
 
-    init()
+    init.apply(this)
 
     this.publishtNote = function (note) {
         fetch(postNoteUrl, {
@@ -32,6 +32,11 @@ function Notes() {
     function init() {
         getNotes(getNotesUrl)
             .then(data => {
+                // 因为箭头函数的this绑定到了init()函数作用域的this
+                // 而由于init函数的调用方式，决定了作用域的this绑定到了globalThis
+                // 所以这里的this绑定到了globalThis
+                // 解决办法1：将init()的this进行显式绑定
+                // 解决办法2：将init()改为箭头函数
                 this.notes = data;
                 let ul = renderNotes(this.notes);
                 notesList.replaceChild(ul, notesList.querySelector('ul'));
