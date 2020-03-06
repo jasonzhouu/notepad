@@ -19,7 +19,9 @@ document.querySelector('#publishNote button').addEventListener('click', event =>
     // @done: markdown渲染引擎改用 markdown-it，效果更好
     // @done: 显示发布时间
     // @done: 将毫秒格式的时间转换成local time
-    // @todo: 按发布时间降序排列，新发布(即最后发布)的显示在最上面
+    // @done: 按发布时间降序排列，新发布(即最后发布)的显示在最上面
+    // @todo: 美化列表，去掉前缀点号
+    // @todo: 美化输入框
     notes.publishtNote({
         date,
         content
@@ -63,6 +65,9 @@ function Notes() {
         }).then(reponse => reponse.json())
     }
     function showNotes() {
+        // 开始渲染前，先对notes按发布时间排序
+        sortNotesByTime()
+
         let ul = renderNotes();
         notesList.replaceChild(ul, notesList.querySelector('ul'));
     }
@@ -89,5 +94,10 @@ function Notes() {
     function parseDate(date) {
         date = new Date(date)
         return date.toLocaleDateString()
+    }
+    function sortNotesByTime() {
+        notes = notes.sort((i, j) => {
+            return (j.date - i.date)
+        })
     }
 }
