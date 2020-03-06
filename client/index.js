@@ -11,6 +11,7 @@
 
 // @todo: 输入框禁止缩放
 // @todo: 新添的note下滑出现
+// @todo: 刷新时，输入框的内容仍然保留
 
 var md = window.markdownit({
     highlight: function (str, lang) {
@@ -91,7 +92,6 @@ function Notes() {
     function showNotes() {
         // 开始渲染前，先对notes按发布时间排序
         sortNotesByTime()
-
         let ul = renderNotes(notes);
         notesList.replaceChild(ul, notesList.firstChild);
     }
@@ -104,9 +104,12 @@ function Notes() {
         return ul
     }
     function renderNewNote(note) {
-        notesList.querySelector('ul').prepend(
-            renderNote(note)
-        )
+        let newNote = renderNote(note)
+        newNote.style.cssText = 'transform: scaleY(0);'
+        notesList.querySelector('ul').prepend(newNote)
+        setTimeout(() => {
+            document.querySelector('#notesList ul').firstChild.style.cssText = 'transform: scaleY(1);'
+        }, 1000);
     }
     function renderNote(note) {
         let li = document.createElement('li')
