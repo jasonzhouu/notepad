@@ -1,9 +1,23 @@
+var md = window.markdownit({
+    highlight: function (str, lang) {
+        if (lang && hljs.getLanguage(lang)) {
+            try {
+                return hljs.highlight(lang, str).value;
+            } catch (__) { }
+        }
+
+        return ''; // use external default escaping
+    }
+});
+
 let notes = new Notes()
 document.querySelector('#publishNote button').addEventListener('click', event => {
     let content = document.querySelector('#noteEditor').value
     let date = Date.now()
     // @done: 发布note后，将新发布的note显示出来：更新notes，并渲染
     // @done: 发布note后，将输入框清空
+    // @done: markdown渲染引擎改用 markdown-it，效果更好
+    // @todo: 显示发布时间
     // @todo: 按发布时间降序排列，新发布(即最后发布)的显示在最上面
     notes.publishtNote({
         date,
@@ -61,6 +75,6 @@ function Notes() {
         return ul
     }
     function renderMarkdown(text) {
-        return marked(text)
+        return md.render(text);
     }
 }
