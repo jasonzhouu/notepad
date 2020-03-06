@@ -7,6 +7,7 @@ function Notes() {
     // @todo: 如果读取失败，或者为空，则初始化为 []
     let rawData = fs.readFileSync(jsonPath);
     let notes = JSON.parse(rawData)
+    sortNotesByTime()
 
     this.addNote = function(note) {
         notes.push(note)
@@ -22,6 +23,12 @@ function Notes() {
 
     this.getAllNotes = function() {
         return notes
+    }
+
+    function sortNotesByTime() {
+        notes = notes.sort((i, j) => {
+            return (j.date - i.date)
+        })
     }
 }
 

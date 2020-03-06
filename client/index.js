@@ -70,20 +70,18 @@ function Notes() {
     }
 
     function init() {
-        getNotes(getNotesUrl)
+        getNotes(getNotesUrl, 1)
             .then(data => {
                 notes = data;
                 showNotes()
             });
     }
-    function getNotes(url) {
-        return fetch(url, {
+    function getNotes(url, page) {
+        return fetch(url+`/${page}`, {
             method: 'GET'
         }).then(reponse => reponse.json())
     }
     function showNotes() {
-        // 开始渲染前，先对notes按发布时间排序
-        sortNotesByTime()
         let ul = renderNotes(notes);
         notesList.replaceChild(ul, notesList.firstChild);
     }
@@ -154,10 +152,5 @@ function Notes() {
             }
         }
         return dateFormat
-    }
-    function sortNotesByTime() {
-        notes = notes.sort((i, j) => {
-            return (j.date - i.date)
-        })
     }
 }
