@@ -12,13 +12,10 @@ app.use(express.static('client'));
 app.get('/notes', (req, res) => res.send(notes))
 
 app.post('/add_note', (req, res) => {
-    // res.send({
-    //     status: 'sucess',
-    //     data: 
-    // })
+    add_note({
+        ...req.body
+    })
     res.send('sucess')
-    console.log(typeof req.body, req.body);
-    
 })
 
 
