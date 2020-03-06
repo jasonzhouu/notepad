@@ -1,3 +1,14 @@
+// @done: 发布note后，将新发布的note显示出来：更新notes，并渲染
+// @done: 发布note后，将输入框清空
+// @done: markdown渲染引擎改用 markdown-it，效果更好
+// @done: 显示发布时间
+// @done: 将毫秒格式的时间转换成local time
+// @done: 按发布时间降序排列，新发布(即最后发布)的显示在最上面
+// @done: 按ctrl enter键发布
+
+// @todo: 美化列表，去掉前缀点号
+// @todo: 美化输入框
+
 var md = window.markdownit({
     highlight: function (str, lang) {
         if (lang && hljs.getLanguage(lang)) {
@@ -12,21 +23,31 @@ var md = window.markdownit({
 
 let notes = new Notes()
 document.querySelector('#publishNote button').addEventListener('click', event => {
+    publishNote()
+})
+
+// 同时按下 ctrl, enter 键时，发布文章
+document.addEventListener('keydown', event => {
+    const keyName = event.key;
+
+    if (keyName === 'Control') {
+        // 如果只按ctl键，不做任何事
+        return;
+    }
+    if (event.ctrlKey && keyName === 'Enter') {
+        // 同时按下 ctrl, enter 键
+        publishNote()
+    }
+})
+
+function publishNote() {
     let content = document.querySelector('#noteEditor').value
     let date = Date.now()
-    // @done: 发布note后，将新发布的note显示出来：更新notes，并渲染
-    // @done: 发布note后，将输入框清空
-    // @done: markdown渲染引擎改用 markdown-it，效果更好
-    // @done: 显示发布时间
-    // @done: 将毫秒格式的时间转换成local time
-    // @done: 按发布时间降序排列，新发布(即最后发布)的显示在最上面
-    // @todo: 美化列表，去掉前缀点号
-    // @todo: 美化输入框
     notes.publishtNote({
         date,
         content
     })
-})
+}
 
 function Notes() {
     let notes = [];

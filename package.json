@@ -21,5 +21,8 @@
   "homepage": "https://github.com/jasonzhouu/notepad#readme",
   "devDependencies": {
     "express": "^4.17.1"
+  },
+  "dependencies": {
+    "marked": "^0.8.0"
   }
 }
