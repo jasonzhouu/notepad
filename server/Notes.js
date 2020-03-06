@@ -1,5 +1,7 @@
 const fs = require('fs');
 
+// @todo: 权限系统，需要输入密码登录，或者将输入框不放在主页
+
 function Notes() {
     // @todo: 如果notes规模太大，会有性能问题。后续改为 Redis 数据库。
     const jsonPath = './test/notes.json'

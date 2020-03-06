@@ -4,7 +4,8 @@
   "description": "used to post and show short paragraph",
   "main": "server/index.js",
   "scripts": {
-    "start": "node ."
+    "start": "node .",
+    "cloc": "cloc . --exclude-dir=node_modules,test --exclude-ext=json"
   },
   "repository": {
     "type": "git",
