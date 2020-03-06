@@ -1,6 +1,7 @@
 body {
     max-width: 800px;
     margin: 0 auto;
+    font-size: 18px;
 }
 
 /* notes列表 */
@@ -33,13 +34,14 @@ textarea#noteEditor {
     box-sizing: border-box;
     width: 100%;
     outline: none;
-    border: 5px solid #ddd;
+    border: 3px solid white;
     resize: none;
+    font-size: 18px;
 }
 
 /* 渐变边框，参考 https://segmentfault.com/a/1190000012797252 */
-textarea#noteEditor:focus {
-    border: 5px solid transparent;
-    border-image: linear-gradient(to right, orange, red);
+textarea#noteEditor:focus, textarea#noteEditor:hover {
+    border: 3px solid transparent;
+    border-image: linear-gradient(to bottom, #ddd, #fff);
     border-image-slice: 10;
 }
