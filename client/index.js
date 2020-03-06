@@ -7,11 +7,8 @@
 // @done: 按ctrl enter键发布
 // @done: 美化notes列表，去掉前缀点号
 // @done: 美化输入框
-// @done: 仿照twitter的事件格式化
+// @done: 仿照twitter的时间格式化
 
-// @todo: 发布图片
-// @todo: 发布事件显示精确到分钟
-// @todo: 分页
 // @todo: 输入框禁止缩放
 
 var md = window.markdownit({
