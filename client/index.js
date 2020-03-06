@@ -8,12 +8,12 @@
 // @done: 美化notes列表，去掉前缀点号
 // @done: 美化输入框
 // @done: 仿照twitter的时间格式化
+// @done: 新添的note下滑出现
+// @done: 输入框禁止缩放
 
-// @todo: 输入框禁止缩放
-// @todo: 新添的note下滑出现
 // @todo: 刷新时，输入框的内容仍然保留
 // @todo: 链接可点击
-
+// @todo: 输入框focus时，有渐变边框
 var md = window.markdownit({
     highlight: function (str, lang) {
         if (lang && hljs.getLanguage(lang)) {

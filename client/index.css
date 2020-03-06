@@ -15,7 +15,7 @@ body {
     background-color: #ddd;
     padding: 1em;
     margin: 1em 0;
-    transition: all 5s;
+    transition: all 4s;
     overflow: hidden;
 }
 
@@ -29,6 +29,8 @@ body {
     margin-top: 2em;
 }
 #noteEditor {
+    box-sizing: border-box;
     width: 100%;
-
+    outline: none;
+    resize: none;
 }
