@@ -1,0 +1,22 @@
+{
+  "name": "notepad",
+  "version": "1.0.0",
+  "description": "used to post and show short paragraph",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasonzhouu/notepad.git"
+  },
+  "keywords": [
+    "note"
+  ],
+  "author": "周宇盛Yusheng Zhou",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jasonzhouu/notepad/issues"
+  },
+  "homepage": "https://github.com/jasonzhouu/notepad#readme"
+}
