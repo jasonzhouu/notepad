@@ -1,7 +1,3 @@
-GET http://localhost:3000/foo
-
-###
-
 GET http://localhost:3000
 
 
@@ -9,3 +5,19 @@ GET http://localhost:3000
 
 
 GET http://localhost:3000/notes
+
+
+### 
+
+
+POST http://localhost:3000/add_note
+content-type: application/json
+
+{
+    "date": "2019-02-29",
+    "content": "Biltong spare ribs frankfurter, landjaeger buffalo tenderloin andouille pork chop corned beef bresaola picanha turkey pork belly cow pork. Turducken cow ball tip, pig chuck flank chicken t-bone tongue bresaola corned beef landjaeger tri-tip burgdoggen pork chop. Salami short loin cow leberkas pastrami sausage. Beef chislic pastrami leberkas, drumstick tri-tip porchetta tail prosciutto capicola buffalo short ribs. Meatball fatback brisket leberkas prosciutto burgdoggen pastrami frankfurter tri-tip pork belly sausage biltong kielbasa."
+}
+
+
+###
+

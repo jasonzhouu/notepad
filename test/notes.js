@@ -1,4 +1,4 @@
-const notes = [
+let notes = [
     {
         date: '2019/03/01',
         content: 'Bacon ipsum dolor amet beef boudin turkey cupim. Shank beef ribs pastrami pork chop chislic alcatra frankfurter picanha hamburger sirloin leberkas. Swine kevin andouille pancetta spare ribs. Ball tip turducken chislic pork belly, ground round shank kevin prosciutto pork turkey shankle jowl beef ribs. Venison cow filet mignon ball tip meatball brisket spare ribs beef shankle ground round tenderloin kielbasa pastrami bacon biltong. Beef ribs jowl t-bone, cupim shoulder bresaola chicken meatloaf sirloin.'
