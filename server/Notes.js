@@ -14,7 +14,13 @@ function Notes() {
         return notes
     }
 
-    this.getNotes = function() {
+    this.getNotes = function(page) {
+        let start = 10 * (page -1)
+        let end = 10 * page - 1
+        return notes.slice(start, end)
+    }
+
+    this.getAllNotes = function() {
         return notes
     }
 }
