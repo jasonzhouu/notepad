@@ -29,9 +29,17 @@ body {
     margin-top: 2em;
 }
 /* 参考 https://css-tricks.com/textarea-tricks/ */
-#noteEditor {
+textarea#noteEditor {
     box-sizing: border-box;
     width: 100%;
     outline: none;
+    border: 5px solid #ddd;
     resize: none;
+}
+
+/* 渐变边框，参考 https://segmentfault.com/a/1190000012797252 */
+textarea#noteEditor:focus {
+    border: 5px solid transparent;
+    border-image: linear-gradient(to right, orange, red);
+    border-image-slice: 10;
 }

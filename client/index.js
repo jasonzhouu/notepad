@@ -65,6 +65,7 @@ function Notes() {
                 document.querySelector('#noteEditor').value = ""
                 notes.push(note)
                 renderNewNote(note)
+                localStorage.setItem('textarea', '')
             })
     }
 

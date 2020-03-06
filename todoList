@@ -11,9 +11,9 @@
 @done: 新添的note下滑出现
 @done: 输入框禁止缩放
 @done: 刷新时，输入框的内容仍然保留
+@done: 输入框focus时，有渐变边框
 
 @todo: 识别note中的链接，可点击
-@todo: 输入框focus时，有渐变边框
 @todo: 输入框autoresize
 
 
