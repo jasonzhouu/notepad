@@ -19,4 +19,9 @@ app.post('/addNotes', (req, res) => {
 })
 
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}!`)
+})
+
+// @done: 在主页展示notes
+// @todo: 发布 note
