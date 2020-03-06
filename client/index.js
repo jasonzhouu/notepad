@@ -17,7 +17,7 @@ document.querySelector('#publishNote button').addEventListener('click', event =>
     // @done: 发布note后，将新发布的note显示出来：更新notes，并渲染
     // @done: 发布note后，将输入框清空
     // @done: markdown渲染引擎改用 markdown-it，效果更好
-    // @todo: 显示发布时间
+    // @done: 显示发布时间
     // @todo: 按发布时间降序排列，新发布(即最后发布)的显示在最上面
     notes.publishtNote({
         date,
@@ -69,7 +69,15 @@ function Notes() {
         let ul = document.createElement('ul')
         for (const note of notes) {
             let li = document.createElement('li')
-            li.innerHTML = renderMarkdown(note.content)
+
+            let noteDOM = document.createElement('p')
+            noteDOM.innerHTML = renderMarkdown(note.content)
+            li.appendChild(noteDOM)
+
+            let dateDOM = document.createElement('span')
+            dateDOM.textContent = note.date
+            li.appendChild(dateDOM)
+
             ul.appendChild(li)
         }
         return ul
