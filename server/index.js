@@ -1,18 +1,18 @@
 const express = require('express')
-const add_note = require('./add_note')
-const notes = require('../test/notes.js')
-
-
+const Notes = require('./Notes')
 
 const app = express()
+const notes = new Notes()
 const port = 3000
 
 app.use(express.json()) // for parsing application/json
 app.use(express.static('client'));
-app.get('/notes', (req, res) => res.send(notes))
+app.get('/notes', (req, res) => {
+    res.send(notes.getNotes())
+})
 
-app.post('/add_note', (req, res) => {
-    add_note({
+app.post('/addNotes', (req, res) => {
+    notes.addNote({
         ...req.body
     })
     res.send('sucess')
