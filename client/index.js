@@ -12,6 +12,7 @@
 // @todo: 发布图片
 // @todo: 发布事件显示精确到分钟
 // @todo: 分页
+// @todo: 输入框禁止缩放
 
 var md = window.markdownit({
     highlight: function (str, lang) {
