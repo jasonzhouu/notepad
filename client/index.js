@@ -5,9 +5,10 @@
 // @done: 将毫秒格式的时间转换成local time
 // @done: 按发布时间降序排列，新发布(即最后发布)的显示在最上面
 // @done: 按ctrl enter键发布
+// @done: 美化notes列表，去掉前缀点号
 
-// @todo: 美化列表，去掉前缀点号
 // @todo: 美化输入框
+// @todo: 发布图片
 
 var md = window.markdownit({
     highlight: function (str, lang) {

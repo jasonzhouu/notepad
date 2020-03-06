@@ -1,0 +1,17 @@
+#notesList > ul {
+    padding: 0;
+    list-style-type: none;
+    max-width: 800px;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+}
+
+#notesList > ul > li {
+    background-color: #ddd;
+    padding: 1em;
+    margin: 1em;
+}
+
+#notesList > ul > li > span {
+    color: #999;
+}
