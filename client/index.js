@@ -2,6 +2,8 @@ let notes = new Notes()
 document.querySelector('#publishNote button').addEventListener('click', event => {
     let content = document.querySelector('#noteEditor').value
     let date = Date.now()
+    // @todo: 发布note后，将新发布的note显示出来
+    // @todo: 按发布时间降序排列，新发布(即最后发布)的显示在最上面
     notes.publishtNote({
         date,
         content
@@ -51,9 +53,12 @@ function Notes() {
         let ul = document.createElement('ul')
         for (const note of notes) {
             let li = document.createElement('li')
-            li.textContent = note.content
+            li.innerHTML = renderMarkdown(note.content)
             ul.appendChild(li)
         }
         return ul
+    }
+    function renderMarkdown(text) {
+        return marked(text)
     }
 }
