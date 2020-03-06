@@ -6,9 +6,10 @@
 // @done: 按发布时间降序排列，新发布(即最后发布)的显示在最上面
 // @done: 按ctrl enter键发布
 // @done: 美化notes列表，去掉前缀点号
+// @done: 美化输入框
 
-// @todo: 美化输入框
 // @todo: 发布图片
+// @todo: 发布事件显示精确到分钟
 
 var md = window.markdownit({
     highlight: function (str, lang) {

@@ -1,7 +1,12 @@
+body {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* notes列表 */
 #notesList > ul {
     padding: 0;
     list-style-type: none;
-    max-width: 800px;
     margin-inline-start: auto;
     margin-inline-end: auto;
 }
@@ -9,9 +14,19 @@
 #notesList > ul > li {
     background-color: #ddd;
     padding: 1em;
-    margin: 1em;
+    margin: 1em 0;
 }
 
 #notesList > ul > li > span {
     color: #999;
+}
+
+
+/* 输入框 */
+#publishNote {
+    margin-top: 2em;
+}
+#noteEditor {
+    width: 100%;
+
 }
