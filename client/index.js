@@ -18,6 +18,7 @@ document.querySelector('#publishNote button').addEventListener('click', event =>
     // @done: 发布note后，将输入框清空
     // @done: markdown渲染引擎改用 markdown-it，效果更好
     // @done: 显示发布时间
+    // @done: 将毫秒格式的时间转换成local time
     // @todo: 按发布时间降序排列，新发布(即最后发布)的显示在最上面
     notes.publishtNote({
         date,
@@ -75,7 +76,7 @@ function Notes() {
             li.appendChild(noteDOM)
 
             let dateDOM = document.createElement('span')
-            dateDOM.textContent = note.date
+            dateDOM.textContent = parseDate(note.date)
             li.appendChild(dateDOM)
 
             ul.appendChild(li)
@@ -84,5 +85,9 @@ function Notes() {
     }
     function renderMarkdown(text) {
         return md.render(text);
+    }
+    function parseDate(date) {
+        date = new Date(date)
+        return date.toLocaleDateString()
     }
 }
