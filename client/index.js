@@ -1,5 +1,12 @@
-
-var notes = new Notes()
+let notes = new Notes()
+document.querySelector('#publishNote button').addEventListener('click', event => {
+    let content = document.querySelector('#noteEditor').value
+    let date = Date.now()
+    notes.publishtNote({
+        date,
+        content
+    })
+})
 
 function Notes() {
     this.notes = [];
@@ -7,7 +14,20 @@ function Notes() {
     let postNoteUrl = "/addNotes"
     let notesList = document.querySelector('#notesList')
 
-    init();
+    init()
+
+    this.publishtNote = function (note) {
+        fetch(postNoteUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(note)
+        }).then(response => response.json())
+        .then(data => {
+            console.log(`post note status: ${data.status}`)
+        })
+    }
 
     function init() {
         getNotes(getNotesUrl)

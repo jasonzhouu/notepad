@@ -15,7 +15,9 @@ app.post('/addNotes', (req, res) => {
     notes.addNote({
         ...req.body
     })
-    res.send('sucess')
+    res.send({
+        status: 'sucess'
+    })
 })
 
 
@@ -25,3 +27,4 @@ app.listen(port, () => {
 
 // @done: 在主页展示notes
 // @todo: 发布 note
+// @todo: 将 markdown 格式的notes渲染成html
