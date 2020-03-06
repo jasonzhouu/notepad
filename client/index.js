@@ -72,7 +72,7 @@ function Notes() {
                 console.log(`post note status: ${data.status}`)
                 document.querySelector('#noteEditor').value = ""
                 notes.push(note)
-                showNotes()
+                renderNewNote(note)
             })
     }
 
@@ -93,7 +93,7 @@ function Notes() {
         sortNotesByTime()
 
         let ul = renderNotes(notes);
-        notesList.replaceChild(ul, notesList.querySelector('ul'));
+        notesList.replaceChild(ul, notesList.firstChild);
     }
     function renderNotes(notes) {
         let ul = document.createElement('ul')
@@ -102,6 +102,11 @@ function Notes() {
             ul.appendChild(li)
         }
         return ul
+    }
+    function renderNewNote(note) {
+        notesList.querySelector('ul').prepend(
+            renderNote(note)
+        )
     }
     function renderNote(note) {
         let li = document.createElement('li')
