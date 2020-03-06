@@ -28,6 +28,7 @@ body {
 #publishNote {
     margin-top: 2em;
 }
+/* 参考 https://css-tricks.com/textarea-tricks/ */
 #noteEditor {
     box-sizing: border-box;
     width: 100%;

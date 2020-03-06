@@ -1,19 +1,3 @@
-// @done: 发布note后，将新发布的note显示出来：更新notes，并渲染
-// @done: 发布note后，将输入框清空
-// @done: markdown渲染引擎改用 markdown-it，效果更好
-// @done: 显示发布时间
-// @done: 将毫秒格式的时间转换成local time
-// @done: 按发布时间降序排列，新发布(即最后发布)的显示在最上面
-// @done: 按ctrl enter键发布
-// @done: 美化notes列表，去掉前缀点号
-// @done: 美化输入框
-// @done: 仿照twitter的时间格式化
-// @done: 新添的note下滑出现
-// @done: 输入框禁止缩放
-
-// @todo: 刷新时，输入框的内容仍然保留
-// @todo: 链接可点击
-// @todo: 输入框focus时，有渐变边框
 var md = window.markdownit({
     highlight: function (str, lang) {
         if (lang && hljs.getLanguage(lang)) {
@@ -44,6 +28,12 @@ document.addEventListener('keydown', event => {
         publishNote()
     }
 })
+
+// 输入文字时，将其保存到本地，以便刷新时从中读取
+document.querySelector('#noteEditor').addEventListener('input', event => {
+    localStorage.setItem('textarea', document.querySelector('#noteEditor').value)
+})
+document.querySelector('#noteEditor').value = localStorage.getItem('textarea')
 
 function publishNote() {
     let content = document.querySelector('#noteEditor').value
