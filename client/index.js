@@ -71,9 +71,14 @@ function deleteLoadingIcon() {
 }
 
 document.querySelector('textarea').onscroll = function() {
-    if( bottomHeight.call(this) <= 30) {
-        // done: 将输入框的高度增高
-        this.rows += 1
+    expandTextArea()
+}
+
+expandTextArea()
+function expandTextArea() {
+    let dom = document.querySelector('textarea')
+    while(dom.scrollTop >0 || bottomHeight.call(dom) > 0) {
+        dom.rows += 1
     }
 }
 
