@@ -47,11 +47,6 @@ window.onscroll = function () {
     }
 };
 
-// 点击下一页
-document.querySelector('#notesList button').addEventListener('click', event => {
-    notes.nextPage()
-})
-
 function publishNote() {
     let content = document.querySelector('#noteEditor').value
     let date = Date.now()
