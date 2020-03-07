@@ -24,7 +24,7 @@ app.post('/notes', (req, res) => {
 })
 
 // 路由2: 删除note
-// √ 1。建立路由, 将date作为唯一标志
+// √ 1。建立路由, 将date作为note的唯一标志
 app.delete('/note', (req, res) => {
     let date = req.body.date
     // √ 2。交给notes对象，删除内存中的note；删除json中的note；

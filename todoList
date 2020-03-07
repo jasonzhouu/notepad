@@ -65,8 +65,16 @@ DOM将最新的排在最前，notes也将最新的排在最前。
 @done: 删除note
 @done: 重构代码
 
+@todo: 权限系统，需要输入密码登录，或者将输入框不放在主页
+只有我能发布新内容，其他只能看到列表。
+为了对其他人造成干扰，将登录放在console，输入login(username, keyword)登录
+后端在json配置文件中记录username, keyword。
+第一步：控制台输入login()，显示输入框、删除按钮
+第二步：通过密码登录
+第三步：支持多账户
+
+
 @todo: 改用数据库
 @todo: 搜索
 @todo: 发布图片
-@todo: 权限系统，需要输入密码登录，或者将输入框不放在主页
 @todo: 编辑note
