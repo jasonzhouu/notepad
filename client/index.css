@@ -105,6 +105,8 @@ textarea#noteEditor {
     color: white;
     cursor: auto;
     user-select: none;
+    margin-left: calc(100% - 8em);
+    font-weight: bold;
 }
 
 #publishNote > button.active {
