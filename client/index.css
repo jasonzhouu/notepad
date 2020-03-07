@@ -17,6 +17,7 @@ body > h1 {
     color: white;
     border-radius: 0 50px 50px 0;
     text-transform: uppercase;
+    user-select: none;  /* 禁止选中  https://developer.mozilla.org/en-US/docs/Web/CSS/user-select  */
 }
 
 /* notes列表 */
@@ -47,6 +48,7 @@ body > h1 {
 #notesList > ul > li > span {
     color: #999;
     font-size: 0.8rem;
+    user-select: none;
 }
 
 #notesList > ul > li > button {
@@ -64,6 +66,7 @@ body > h1 {
     border: none;
     transition: all 0.2s;
     cursor: pointer;
+    user-select: none;
 }
 
 #notesList > ul > li > button:hover {
@@ -97,6 +100,7 @@ textarea#noteEditor {
     outline: none;
     color: white;
     cursor: pointer;
+    user-select: none;
 }
 
 #publishNote > button.active {
