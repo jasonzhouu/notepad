@@ -1,4 +1,4 @@
-import whetherScrollBottom from './scrollBottom.js'
+import {whetherScrollBottom, bottomHeight} from './scrollBottom.js'
 
 var md = window.markdownit({
     highlight: function (str, lang) {
@@ -68,6 +68,13 @@ function showLoadingIcon() {
 function deleteLoadingIcon() {
     isLoading = false
     document.querySelector('#loading').innerHTML = ''
+}
+
+document.querySelector('textarea').onscroll = function() {
+    if( bottomHeight.call(this) <= 30) {
+        // done: 将输入框的高度增高
+        this.rows += 1
+    }
 }
 
 function Notes() {

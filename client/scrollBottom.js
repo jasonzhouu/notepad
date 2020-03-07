@@ -36,6 +36,11 @@ function getWindowHeight() {
 }
 
 
-export default function whetherScrollBottom() {
+export function whetherScrollBottom() {
     return (getScrollTop() + getWindowHeight() == getScrollHeight())
+}
+
+export function bottomHeight() {
+    let dom = this;
+    return (dom.scrollHeight - dom.scrollTop - dom.clientHeight)
 }

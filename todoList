@@ -12,17 +12,18 @@
 @done: 输入框禁止缩放
 @done: 刷新时，输入框的内容仍然保留
 @done: 输入框focus时，有渐变边框
+@done: 输入框autoresize
 
 @todo: 识别note中的链接，可点击
-@todo: 输入框autoresize
+@todo: 如果加载完了，将消息传给前端，不要再加载了
 
 
 ===========================================================
 @done: 在主页展示notes
 @done: 发布 note
 @done: 将 markdown 格式的notes渲染成html
+@done: 流媒体
 
-@todo: 流媒体
 @todo: 发布图片
 @todo: 权限系统，需要输入密码登录，或者将输入框不放在主页
 @todo: 编辑note
