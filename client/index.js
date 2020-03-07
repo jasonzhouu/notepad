@@ -1,21 +1,11 @@
-import whetherScrollBottom from './scrollBottom.js'
-
-var md = window.markdownit({
-    highlight: function (str, lang) {
-        if (lang && hljs.getLanguage(lang)) {
-            try {
-                return hljs.highlight(lang, str).value;
-            } catch (__) { }
-        }
-
-        return ''; // use external default escaping
-    }
-});
+import Notes from './Notes.js'
+import loadNextPage from './loadNextPage.js'
 
 let notes = new Notes()
-document.querySelector('#publishNote button').addEventListener('click', event => {
+document.querySelector('#publishNote button').addEventListener('click', () => {
     publishNote()
 })
+loadNextPage(notes)
 
 // 同时按下 ctrl, enter 键时，发布文章
 document.addEventListener('keydown', event => {
@@ -40,7 +30,7 @@ document.querySelector('#noteEditor').value = localStorage.getItem('textarea')
 function publishNote() {
     let content = document.querySelector('#noteEditor').value
     // 当内容为空时，不发布
-    if(content.trim() == '') return;
+    if (content.trim() == '') return;
     let date = Date.now()
     notes.publishtNote({
         date,
@@ -48,41 +38,17 @@ function publishNote() {
     })
 }
 
-let isLoading = false
-// 滑到到底部，加载下一页
-window.onscroll = function () {
-    // 解决滑到底部，检测到多次事件的问题，只要检测到一次到底，就不再执行
-    // 如果是最后一页不执行
-    if (whetherScrollBottom() && isLoading == false && notes.isLastPage == false) {
-        // 显示正在加载
-        showLoadingIcon()
-        // 等待1秒
-        setTimeout(() => {
-            notes.nextPage()
-        }, 1000);
-    }
-};
-
-function showLoadingIcon() {
-    isLoading = true
-    document.querySelector('#loading').innerHTML = 'loading...'
-}
-
-function deleteLoadingIcon() {
-    isLoading = false
-    document.querySelector('#loading').innerHTML = ''
-}
 
 expandTextArea()
 function expandTextArea() {
     let textarea = document.querySelector('textarea')
     textarea.rows = 3
-    while(textarea.clientHeight < textarea.scrollHeight) {
+    while (textarea.clientHeight < textarea.scrollHeight) {
         textarea.rows += 1
     }
     // 当内容为空时，将按钮调暗
     let submit = document.querySelector('#publishNote > button')
-    if(textarea.value.trim() != '') {
+    if (textarea.value.trim() != '') {
         submit.classList.add('active')
     } else {
         submit.classList.remove('active')
@@ -90,155 +56,3 @@ function expandTextArea() {
 }
 
 document.querySelector('textarea').oninput = expandTextArea
-
-function Notes() {
-    let notes = [];
-    let getNotesUrl = "/notes"
-    let deleteNotesUrl = "/note"
-    let postNoteUrl = "/addNotes"
-    let notesList = document.querySelector('#notesList ul')
-    let currentPage = 0
-    this.isLastPage = false
-
-    renderOnePageNotes.apply(this)
-
-    this.publishtNote = function (note) {
-        fetch(postNoteUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(note)
-        }).then(response => response.json())
-            .then(data => {
-                console.log(`post note status: ${data.status}`)
-                document.querySelector('#noteEditor').value = ""
-                notes.unshift(note)
-                renderNewNote(note)
-                localStorage.setItem('textarea', '')
-                expandTextArea()
-            })
-    }
-
-    this.nextPage = renderOnePageNotes
-
-    function renderOnePageNotes() {
-        currentPage += 1
-        fetch(getNotesUrl+`/${currentPage}`, {
-            method: 'GET'
-        }).then(reponse => reponse.json())
-        .then(data => {
-            let newNotes = data.notes
-            notes.push(...newNotes)
-            this.isLastPage = data.isLastPage
-            // 加载到下一页的数据后，转成DOM，并附加到末尾
-            renderNewRequestedNotes(newNotes)
-            // 去掉加载按钮
-            deleteLoadingIcon()
-        })
-    }
-    function renderNewRequestedNotes(data) {
-        let newRenderedNotes = []
-        for (const note of data) {
-            newRenderedNotes.push(renderNote(note))
-        }
-        notesList.append(...newRenderedNotes)
-    }
-    function renderNewNote(note) {
-        let newNote = renderNote(note)
-        newNote.style.cssText = 'max-height: 0px; background-color: #F5F8FA;'
-        notesList.prepend(newNote)
-        setTimeout(() => {
-            document.querySelector('#notesList ul').firstChild.style.cssText = 'max-height: 1000px; background-color: none;'
-        }, 500);
-    }
-    function renderNote(note) {
-        let li = document.createElement('li')
-
-        let noteDOM = document.createElement('p')
-        noteDOM.innerHTML = renderMarkdown(note.content)
-        li.appendChild(noteDOM)
-
-        let dateDOM = document.createElement('span')
-        dateDOM.textContent = parseDate(note.date)
-        li.appendChild(dateDOM)
-
-        let deleteButton = document.createElement('button')
-        deleteButton.textContent = '×'
-        deleteButton.addEventListener('click', event => {
-            deleteNote(note.date)
-        })
-        li.appendChild(deleteButton)
-
-        return li
-    }
-    function deleteNote(date) {
-        // @done: 删除note，步骤：
-        // √ 1。获取dom对应的数据：date
-        //      方法1：先获取dom对应的序列号，然后从notes中获取对应序号的数据
-        //    √ 方法2：给每个按钮的事件中加入数据
-        // √ 2。发送到后端，在后端删除数据
-        fetch(deleteNotesUrl, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ date })
-        }).then(response => response.json())
-        // 3。后端返回成功删除数据的消息后：
-        .then(data => {
-            console.log(data.status)
-            // 3。1找到对应note在notes列表中的序号，删除对应的数据
-            let index
-            notes.forEach((ele, idx) => {
-                if (ele.date == date) {
-                    index = idx
-                }
-            });
-            notes.splice(index, 1)
-            // 3。2 将其dom移除
-            notesList.removeChild(
-                notesList.childNodes[index]
-            )
-        })
-    }
-    function renderMarkdown(text) {
-        return md.render(text);
-    }
-    function parseDate(date) {
-        let dateObject = new Date(date)
-
-        let year = dateObject.getFullYear()
-        let month = dateObject.getMonth() + 1 // getMonth()返回的0表示一月
-        let day = dateObject.getDate()
-
-        let now = new Date()
-        let nowYear = now.getFullYear()
-        let nowMonth = now.getMonth() + 1
-        let nowDay = now.getDate()
-
-        let dateFormat = ''
-        if(year != nowYear) {
-            // 不是今年发的，显示年月日
-            dateFormat = `${year}/${month}/${day}`
-        } else if(month != nowMonth  || day != nowDay) {
-            // 不是今天发的，只显示月、日
-            dateFormat = `${month}/${day}`
-        } else if( year == nowYear && month == nowMonth && day == nowDay) {
-            // 今天发的，只显示多久之前
-            let interval = now - dateObject
-            let second = (interval/1000).toFixed(0)
-            let minute = (second%3600/60).toFixed(0)
-            let hour = (second/3600).toFixed(0)
-            second = second%3600%60
-            if(hour >= 1) {
-                dateFormat = `${hour}h ago`
-            } else if(minute >= 1) {
-                dateFormat = `${minute}m ago`
-            } else {
-                dateFormat = `${second}s ago`
-            }
-        }
-        return dateFormat
-    }
-}
