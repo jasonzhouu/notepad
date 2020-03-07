@@ -37,7 +37,5 @@ function getWindowHeight() {
 
 
 export default function whetherScrollBottom() {
-    if (getScrollTop() + getWindowHeight() == getScrollHeight()) {
-        alert("已经到最底部了！!");
-    }
+    return (getScrollTop() + getWindowHeight() == getScrollHeight())
 }

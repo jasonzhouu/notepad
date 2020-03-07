@@ -37,9 +37,14 @@ document.querySelector('#noteEditor').addEventListener('input', event => {
 })
 document.querySelector('#noteEditor').value = localStorage.getItem('textarea')
 
-// 滑到到底部
+// 滑到到底部，加载下一页
 window.onscroll = function () {
-    whetherScrollBottom();
+    if (whetherScrollBottom()) {
+        // 等待1秒
+        setTimeout(() => {
+            notes.nextPage()
+        }, 1000);
+    }
 };
 
 // 点击下一页
