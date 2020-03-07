@@ -35,7 +35,7 @@ app.delete('/note', (req, res) => {
 // 新建note
 app.post('/addNote', (req, res) => {
     notes.addNote({
-        ...req.body
+        ...req.body.note
     })
     res.send({
         status: 'add notes success'

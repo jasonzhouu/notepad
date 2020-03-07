@@ -21,7 +21,7 @@ export function postNoteAPI(note) {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(note)
+        body: JSON.stringify({ note })
     }).then(response => response.json())
 }
 
