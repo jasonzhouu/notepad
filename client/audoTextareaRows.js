@@ -1,7 +1,7 @@
 // 监测textarea输入事件，如果内容不为空，将按markdown格式渲染
 let markdownPreview = document.querySelector('#markdownPreview')
 
-export default function audoTextareaRows(notes) {
+export default function audoTextareaRows() {
     let textarea = document.querySelector('textarea')
     textarea.rows = 3
     while (textarea.clientHeight < textarea.scrollHeight) {
@@ -18,6 +18,6 @@ export default function audoTextareaRows(notes) {
     }
 
     // 预览markdown
-    markdownPreview.innerHTML = notes.renderMarkdown(textarea.value)
+    markdownPreview.innerHTML = md.render(textarea.value)
 
 }

@@ -27,7 +27,23 @@
 
     <!-- highlight.js,   https://github.com/highlightjs/highlight.js -->
     <script src="https://cdn.staticfile.org/highlight.js/9.18.1/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+        hljs.initHighlightingOnLoad();
+        var md = window.markdownit({
+            breaks: true,
+            linkify: true,
+            typographer: true,
+            highlight: function (str, lang) {
+                if (lang && hljs.getLanguage(lang)) {
+                    try {
+                        return hljs.highlight(lang, str).value;
+                    } catch (__) { }
+                }
+
+                return ''; // use external default escaping
+            }
+        });
+    </script>
 
     <script src="./index.js" type="module"></script>
 </body>

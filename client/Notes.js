@@ -2,20 +2,7 @@ import audoTextareaRows from './audoTextareaRows.js'
 import loadNextPageInBottom from './loadNextPage.js'
 
 
-var md = window.markdownit({
-    breaks: true,
-    linkify: true,
-    typographer: true,
-    highlight: function (str, lang) {
-        if (lang && hljs.getLanguage(lang)) {
-            try {
-                return hljs.highlight(lang, str).value;
-            } catch (__) { }
-        }
 
-        return ''; // use external default escaping
-    }
-});
 
 
 export default function Notes() {
@@ -43,7 +30,7 @@ export default function Notes() {
                 showNewlyPublishedNote(note)
                 localStorage.setItem('textarea', '')
                 document.querySelector('#markdownPreview').innerHTML = ''
-                audoTextareaRows(this)
+                audoTextareaRows()
             })
     }
 

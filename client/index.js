@@ -33,8 +33,5 @@ document.querySelector('#noteEditor').value = localStorage.getItem('textarea')
 
 
 // 自动伸缩输入框的高度的3个时刻：刚加载页面、输入内容、发布内容
-audoTextareaRows(notes)
-document.querySelector('textarea').oninput = (event) => {
-    audoTextareaRows(notes)
-}
-
+audoTextareaRows()
+document.querySelector('textarea').oninput = audoTextareaRows
