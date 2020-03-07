@@ -45,3 +45,10 @@ textarea#noteEditor:focus, textarea#noteEditor:hover {
     border-image: linear-gradient(to bottom, #ddd, #fff);
     border-image-slice: 10;
 }
+
+/* 表示页面正在加载下一页的图标 */
+#loading {
+    color: #555;
+    padding: 50px;
+    text-align: center;
+}

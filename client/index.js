@@ -40,6 +40,8 @@ document.querySelector('#noteEditor').value = localStorage.getItem('textarea')
 // 滑到到底部，加载下一页
 window.onscroll = function () {
     if (whetherScrollBottom()) {
+        // 显示正在加载
+        showLoadingIcon()
         // 等待1秒
         setTimeout(() => {
             notes.nextPage()
@@ -54,6 +56,14 @@ function publishNote() {
         date,
         content
     })
+}
+
+function showLoadingIcon() {
+    document.querySelector('#loading').innerHTML = 'loading...'
+}
+
+function deleteLoadingIcon() {
+    document.querySelector('#loading').innerHTML = ''
 }
 
 function Notes() {
@@ -90,6 +100,8 @@ function Notes() {
         .then(data => {
             notes.push(...data)
             renderNewRequestedNotes(data)
+            // 去掉加载按钮
+            deleteLoadingIcon()
         })
     }
     function getNotes(url, page) {
