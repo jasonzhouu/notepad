@@ -26,13 +26,14 @@
 统一前端notes数据和DOM的排序方式。
 DOM将最新的排在最前，notes也将最新的排在最前。
 从而新发布的note插入notes数组的最前面，即unshift()方法
+@done: 当内容为空时，将按钮调暗
+@done: 不能发布空内容
 
 @todo: 识别note中的链接，可点击
 @todo: 快删除到底，屏幕底部有空白时，加载下一页
 @todo: 美化删除按钮，并确认是否要删除
 @todo: 将edit, delete放在下拉框中
 @todo: 代码超出页面宽度，可以scroll。<code>标签
-@todo: 不能发布空内容
 
 
 

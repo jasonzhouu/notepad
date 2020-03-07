@@ -50,6 +50,20 @@ textarea#noteEditor:focus, textarea#noteEditor:hover {
     border-image-slice: 10;
 }
 
+#publishNote > button {
+    padding: 1em 2em;
+    line-height: 1em;
+    background-color: #8ED0F8;
+    border-radius: 1.5em;
+    border: none;
+    outline: none;
+    color: white;
+}
+
+#publishNote > button.active {
+    background-color: #1A91DA;
+}
+
 /* 表示页面正在加载下一页的图标 */
 #loading {
     color: #555;

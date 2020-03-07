@@ -39,6 +39,8 @@ document.querySelector('#noteEditor').value = localStorage.getItem('textarea')
 
 function publishNote() {
     let content = document.querySelector('#noteEditor').value
+    // 当内容为空时，不发布
+    if(content.trim() == '') return;
     let date = Date.now()
     notes.publishtNote({
         date,
@@ -73,10 +75,17 @@ function deleteLoadingIcon() {
 
 expandTextArea()
 function expandTextArea() {
-    let dom = document.querySelector('textarea')
-    dom.rows = 3
-    while(dom.clientHeight < dom.scrollHeight) {
-        dom.rows += 1
+    let textarea = document.querySelector('textarea')
+    textarea.rows = 3
+    while(textarea.clientHeight < textarea.scrollHeight) {
+        textarea.rows += 1
+    }
+    // 当内容为空时，将按钮调暗
+    let submit = document.querySelector('#publishNote > button')
+    if(textarea.value.trim() != '') {
+        submit.classList.add('active')
+    } else {
+        submit.classList.remove('active')
     }
 }
 
