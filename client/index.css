@@ -104,12 +104,13 @@ textarea#noteEditor {
     border: none;
     outline: none;
     color: white;
-    cursor: pointer;
+    cursor: auto;
     user-select: none;
 }
 
 #publishNote > button.active {
     background-color: #1A91DA;
+    cursor: pointer;
 }
 
 /* 表示页面正在加载下一页的图标 */
