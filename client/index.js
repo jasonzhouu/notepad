@@ -37,18 +37,6 @@ document.querySelector('#noteEditor').addEventListener('input', event => {
 })
 document.querySelector('#noteEditor').value = localStorage.getItem('textarea')
 
-// 滑到到底部，加载下一页
-window.onscroll = function () {
-    if (whetherScrollBottom()) {
-        // 显示正在加载
-        showLoadingIcon()
-        // 等待1秒
-        setTimeout(() => {
-            notes.nextPage()
-        }, 1000);
-    }
-};
-
 function publishNote() {
     let content = document.querySelector('#noteEditor').value
     let date = Date.now()
@@ -58,11 +46,27 @@ function publishNote() {
     })
 }
 
+let isLoading = false
+// 滑到到底部，加载下一页
+window.onscroll = function () {
+    // 解决滑到底部，检测到多次事件的问题
+    if (whetherScrollBottom() && isLoading == false) {
+        // 显示正在加载
+        showLoadingIcon()
+        // 等待1秒
+        setTimeout(() => {
+            notes.nextPage()
+        }, 1000);
+    }
+};
+
 function showLoadingIcon() {
+    isLoading = true
     document.querySelector('#loading').innerHTML = 'loading...'
 }
 
 function deleteLoadingIcon() {
+    isLoading = false
     document.querySelector('#loading').innerHTML = ''
 }
 
