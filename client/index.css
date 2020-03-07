@@ -20,6 +20,12 @@ body > h1 {
     user-select: none;  /* 禁止选中  https://developer.mozilla.org/en-US/docs/Web/CSS/user-select  */
 }
 
+@media only screen and (max-width: 906px) {
+    body > h1 {
+        display: none;
+    }
+}
+
 
 #markdownPreview {
     margin: 0px;
