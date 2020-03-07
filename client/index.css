@@ -67,13 +67,6 @@ textarea#noteEditor {
     font-size: 18px;
 }
 
-/* 渐变边框，参考 https://segmentfault.com/a/1190000012797252 */
-textarea#noteEditor:focus, textarea#noteEditor:hover {
-    border: 3px solid transparent;
-    border-image: linear-gradient(to bottom, #C8DDAB 0%, #C8DDAB calc(100% - 7em), #fff calc(100% - 8px));
-    border-image-slice: 10;
-}
-
 #publishNote > button {
     padding: 1em 2em;
     line-height: 1em;
