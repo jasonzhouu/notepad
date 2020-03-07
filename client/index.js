@@ -164,7 +164,7 @@ function Notes() {
         return li
     }
     function deleteNote(date) {
-        // @todo: 删除note，步骤：
+        // @done: 删除note，步骤：
         // √ 1。获取dom对应的数据：date
         //      方法1：先获取dom对应的序列号，然后从notes中获取对应序号的数据
         //    √ 方法2：给每个按钮的事件中加入数据

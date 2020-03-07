@@ -20,7 +20,7 @@ app.get('/notes/:page', (req, res) => {
     res.send(notes.getOnePageNotes(req.params.page))
 })
 
-// todo: 删除note
+// done: 删除note
 // √ 1。建立路由, 将date作为唯一标志
 app.delete('/note', (req, res) => {
     let date = req.body.date
