@@ -1,6 +1,6 @@
 {
   "name": "notepad",
-  "version": "1.0.0",
+  "version": "0.1",
   "description": "used to post and show short paragraph",
   "main": "server/index.js",
   "scripts": {

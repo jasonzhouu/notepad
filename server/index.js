@@ -14,7 +14,7 @@ app.use(express.json()) // for parsing application/json
 app.use(express.static('client'));
 
 
-// 路由1：分页请求
+// 路由1：请求一些notes数据
 app.post('/notes', (req, res) => {
     let lastDateOfRemainingItem = req.body.lastDateOfRemainingItem
     // 返回数据包含notes数组，isLastPage布尔值
