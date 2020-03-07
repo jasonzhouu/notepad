@@ -153,7 +153,21 @@ function Notes() {
         dateDOM.textContent = parseDate(note.date)
         li.appendChild(dateDOM)
 
+        let deleteButton = document.createElement('button')
+        deleteButton.textContent = '×'
+        deleteButton.addEventListener('click', event => {
+            deleteNote(event.target)
+        })
+        li.appendChild(deleteButton)
+
         return li
+    }
+    function deleteNote(dom) {
+        // @todo: 删除note，步骤：
+        // 1。发送到后端，在后端删除数据
+        // 2。后端返回成功删除数据的消息后：
+        //      将其从notes数据列表中删除；
+        //      将其dom移除。
     }
     function renderMarkdown(text) {
         return md.render(text);
