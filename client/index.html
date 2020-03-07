@@ -47,9 +47,9 @@
     <script>
         var loginStatus = localStorage.getItem('login')
         if (loginStatus == 'true') {
-            document.getElementById('publishNote').style.display = 'block'
+            login()
         } else {
-            document.getElementById('publishNote').style.display = 'none'
+            logout()
         }
         function login() {
             localStorage.setItem('login', 'true')
