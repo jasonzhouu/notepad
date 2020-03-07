@@ -13,7 +13,7 @@ export default function Notes() {
     this.isLastPage = false
 
     this.publishNote = function (note) {
-        postNoteAPI(note)
+        postNoteAPI({note})
             .then(data => {
                 console.log(`post note status: ${data.status}`)
                 document.querySelector('#noteEditor').value = ""
@@ -34,7 +34,7 @@ export default function Notes() {
             lastDateOfRemainingItem = notes[notes.length - 1].date
         }
 
-        getNotesAPI(lastDateOfRemainingItem)
+        getNotesAPI({lastDateOfRemainingItem})
             .then(data => {
                 let newNotes = data.notes
                 notes.push(...newNotes)
@@ -87,7 +87,7 @@ export default function Notes() {
         //      方法1：先获取dom对应的序列号，然后从notes中获取对应序号的数据
         //    √ 方法2：给每个按钮的事件中加入数据
         // √ 2。发送到后端，在后端删除数据
-        deleteNoteAPI(date)
+        deleteNoteAPI({date})
             // 3。后端返回成功删除数据的消息后：
             .then(data => {
                 console.log(data.status)

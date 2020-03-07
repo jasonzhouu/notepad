@@ -2,35 +2,25 @@ const getNotesUrl = "/notes"
 const deleteNoteUrl = "/note"
 const postNoteUrl = "/addNote"
 
-
-export function getNotesAPI(lastDateOfRemainingItem) {
-    return fetch(getNotesUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            lastDateOfRemainingItem
-        })
-    }).then(reponse => reponse.json())
+const fetchMethod = {
+    get: 'GET',
+    post: 'POST',
+    delete: 'DELETE'
 }
 
-export function postNoteAPI(note) {
-    return fetch(postNoteUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ note })
-    }).then(response => response.json())
+
+const fetchAPI = (url, method) => {
+    return (data) => {
+        return fetch(url, {
+            method,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(reponse => reponse.json())
+    }
 }
 
-export function deleteNoteAPI(date) {
-    return fetch(deleteNoteUrl, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ date })
-    }).then(response => response.json())
-}
+export const getNotesAPI = fetchAPI(getNotesUrl, fetchMethod.post);
+export const postNoteAPI = fetchAPI(postNoteUrl, fetchMethod.post)
+export const deleteNoteAPI = fetchAPI(deleteNoteUrl, fetchMethod.delete)
