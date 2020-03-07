@@ -74,15 +74,13 @@ function deleteLoadingIcon() {
 expandTextArea()
 function expandTextArea() {
     let dom = document.querySelector('textarea')
+    dom.rows = 3
     while(dom.clientHeight < dom.scrollHeight) {
         dom.rows += 1
     }
 }
 
-document.querySelector('textarea').oninput = function() {
-    this.rows = 3
-    expandTextArea()
-}
+document.querySelector('textarea').oninput = expandTextArea
 
 function Notes() {
     let notes = [];
@@ -109,6 +107,7 @@ function Notes() {
                 notes.push(note)
                 renderNewNote(note)
                 localStorage.setItem('textarea', '')
+                expandTextArea()
             })
     }
 
