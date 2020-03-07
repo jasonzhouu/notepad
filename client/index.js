@@ -49,8 +49,9 @@ function publishNote() {
 let isLoading = false
 // 滑到到底部，加载下一页
 window.onscroll = function () {
-    // 解决滑到底部，检测到多次事件的问题
-    if (whetherScrollBottom() && isLoading == false) {
+    // 解决滑到底部，检测到多次事件的问题，只要检测到一次到底，就不再执行
+    // 如果是最后一页不执行
+    if (whetherScrollBottom() && isLoading == false && notes.isLastPage == false) {
         // 显示正在加载
         showLoadingIcon()
         // 等待1秒
@@ -90,9 +91,9 @@ function Notes() {
     let postNoteUrl = "/addNotes"
     let notesList = document.querySelector('#notesList ul')
     let currentPage = 0
-    let isLastPage = false
+    this.isLastPage = false
 
-    renderOnePageNotes()
+    renderOnePageNotes.apply(this)
 
     this.publishtNote = function (note) {
         fetch(postNoteUrl, {
@@ -121,7 +122,7 @@ function Notes() {
         .then(data => {
             let newNotes = data.notes
             notes.push(...newNotes)
-            isLastPage = data.isLastPage
+            this.isLastPage = data.isLastPage
             // 加载到下一页的数据后，转成DOM，并附加到末尾
             renderNewRequestedNotes(newNotes)
             // 去掉加载按钮
