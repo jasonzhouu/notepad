@@ -45,7 +45,14 @@
     </script>
 
     <script>
+        var loginStatus = localStorage.getItem('login')
+        if (loginStatus == true) {
+            document.getElementById('publishNote').style.display = 'block'
+        } else {
+            document.getElementById('publishNote').style.display = 'none'
+        }
         function login() {
+            localStorage.setItem('login', true)
             document.getElementById('publishNote').style.display = 'block'
         }
     </script>
