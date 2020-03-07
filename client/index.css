@@ -10,6 +10,7 @@ body {
     list-style-type: none;
     margin-inline-start: auto;
     margin-inline-end: auto;
+    margin: 0;
 }
 
 #notesList > ul > li {
@@ -44,7 +45,7 @@ body {
     border-radius: 50%;
     outline: none;
     border: none;
-    transition: all 0.3s;
+    transition: all 0.2s;
 }
 
 #notesList > ul > li > button:hover {
@@ -55,7 +56,9 @@ body {
 
 /* 输入框 */
 #publishNote {
-    margin-top: 2em;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-bottom: 10px solid #ddd;
 }
 /* 参考 https://css-tricks.com/textarea-tricks/ */
 textarea#noteEditor {
