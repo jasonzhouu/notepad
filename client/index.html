@@ -44,29 +44,7 @@
         });
     </script>
 
-    <script>
-        var loginStatus = localStorage.getItem('login')
-        if (loginStatus == 'true') {
-            login()
-        } else {
-            logout()
-        }
-        function login() {
-            localStorage.setItem('login', 'true')
-            document.getElementById('publishNote').style.display = 'block'
-            document.querySelectorAll('#notesList > ul > li > button').forEach(element => {
-                element.style.display = 'inline'
-            })
-        }
-        function logout() {
-            localStorage.setItem('login', 'false')
-            document.getElementById('publishNote').style.display = 'none'
-            document.querySelectorAll('#notesList > ul > li > button').forEach(element => {
-                element.style.display = 'none'
-            })
-        }
-    </script>
-
+    <script src="./auth.js"></script>
     <script src="./index.js" type="module"></script>
 </body>
 
