@@ -30,6 +30,7 @@ DOM将最新的排在最前，notes也将最新的排在最前。
 @done: 不能发布空内容
 @done: 美化删除按钮
 @done: 新添加的note背景色由淡蓝色过白色
+@done: 在界面左侧垂直显示notepad
 
 @todo: 输入框focus时，placeholder 颜色变浅
 @todo: 最后一页，在底部显示“到底了”

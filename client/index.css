@@ -2,6 +2,19 @@ body {
     max-width: 800px;
     margin: 0 auto;
     font-size: 18px;
+    font-family: sans-serif;
+}
+
+body > h1 {
+    position: fixed;
+    left: 0px;
+    top: 2em;
+    writing-mode: vertical-lr;
+    margin: 0;
+    padding: 1em 0;
+    font-weight: 100;
+    background: #E8F5FE;
+    text-transform: uppercase;
 }
 
 /* notes列表 */
@@ -23,7 +36,6 @@ body {
     transition: background-color 0.3s;
     transition: max-height 5s;
     position: relative;
-    font-family: sans-serif;
 }
 #notesList > ul > li:hover {
     background-color: #F5F8FA;
