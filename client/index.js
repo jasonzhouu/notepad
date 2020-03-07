@@ -77,7 +77,7 @@ document.querySelector('textarea').onscroll = function() {
 expandTextArea()
 function expandTextArea() {
     let dom = document.querySelector('textarea')
-    while(dom.scrollTop >0 || bottomHeight.call(dom) > 0) {
+    while(dom.clientHeight < dom.scrollHeight) {
         dom.rows += 1
     }
 }
