@@ -63,10 +63,10 @@ DOM将最新的排在最前，notes也将最新的排在最前。
 @done: 将 markdown 格式的notes渲染成html
 @done: 流媒体
 @done: 删除note
+@done: 重构代码
 
-@todo: 改用redis数据库
+@todo: 改用数据库
 @todo: 搜索
 @todo: 发布图片
 @todo: 权限系统，需要输入密码登录，或者将输入框不放在主页
 @todo: 编辑note
-@todo: 重构代码

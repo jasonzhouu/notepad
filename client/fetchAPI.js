@@ -22,6 +22,6 @@ const fetchAPI = (url, method) => {
     }
 }
 
-export const getNotesAPI = fetchAPI(URL.getNotes, FETCH_METHOD.post);
+export const getNotesAPI = fetchAPI(URL.getNotes, FETCH_METHOD.post)
 export const postNoteAPI = fetchAPI(URL.postNote, FETCH_METHOD.post)
 export const deleteNoteAPI = fetchAPI(URL.deleteNote, FETCH_METHOD.delete)
