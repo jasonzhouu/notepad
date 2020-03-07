@@ -18,9 +18,9 @@ body {
     border: 1px solid #ddd;
     margin-bottom: -1px;
     margin-top: 0px;
-    transition: all 4s;
     overflow: hidden;
-    transition: all 0.5s;
+    transition: all 0.3s;
+    position: relative;
 }
 #notesList > ul > li:hover {
     background-color: #F5F8FA;
@@ -31,7 +31,24 @@ body {
 }
 
 #notesList > ul > li > button {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    margin: 5px;
+    font-size: 1.5rem;
+    width: 2.2rem;
+    height: 2.2rem;
+    background-color: inherit;
     float: right;
+    border-radius: 50%;
+    outline: none;
+    border: none;
+    transition: all 0.3s;
+}
+
+#notesList > ul > li > button:hover {
+    color: #E45884;
+    background-color: white;
 }
 
 
