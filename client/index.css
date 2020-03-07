@@ -20,6 +20,11 @@ body > h1 {
     user-select: none;  /* 禁止选中  https://developer.mozilla.org/en-US/docs/Web/CSS/user-select  */
 }
 
+
+#markdownPreview {
+    margin: 0px;
+}
+
 /* notes列表 */
 #notesList > ul {
     padding: 0;

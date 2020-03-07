@@ -11,10 +11,11 @@
 <body>
     <h1>notepad</h1>
     <section id="publishNote">
-        <textarea name="note" id="noteEditor" rows="3" autofocus placeholder="What's happening?"></textarea>
+        <textarea name="note" id="noteEditor" rows="3" autofocus placeholder="支持markdown格式"></textarea>
         <button>发布</button>
     </section>
     <section id="notesList">
+        <p id="markdownPreview"></p>
         <ul></ul>
         <div id="loading"></div>
     </section>

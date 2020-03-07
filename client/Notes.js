@@ -38,6 +38,7 @@ export default function Notes() {
                 notes.unshift(note)
                 showNewlyPublishedNote(note)
                 localStorage.setItem('textarea', '')
+                document.querySelector('#markdownPreview').innerHTML = ''
                 audoTextareaRows()
             })
     }
@@ -126,6 +127,7 @@ export default function Notes() {
     function renderMarkdown(text) {
         return md.render(text);
     }
+    this.renderMarkdown = renderMarkdown
     function parseDate(date) {
         let dateObject = new Date(date)
 
