@@ -16,21 +16,22 @@ body {
 #notesList > ul > li {
     padding: 1em;
     margin: 1em 0;
-    border: 1px solid #ddd;
+    border: 1px solid #E6ECF0;
     margin-bottom: -1px;
     margin-top: 0px;
     overflow: hidden;
     transition: background-color 0.3s;
     transition: max-height 5s;
     position: relative;
+    font-family: sans-serif;
 }
 #notesList > ul > li:hover {
     background-color: #F5F8FA;
 }
 
+/* 发布时间 */
 #notesList > ul > li > span {
     color: #999;
-    font-family: sans-serif;
     font-size: 0.8rem;
 }
 
@@ -59,8 +60,8 @@ body {
 /* 输入框 */
 #publishNote {
     padding: 10px;
-    border: 1px solid #ddd;
-    border-bottom: 10px solid #ddd;
+    border: 1px solid #E6ECF0;
+    border-bottom: 10px solid #E6ECF0;
 }
 /* 参考 https://css-tricks.com/textarea-tricks/ */
 textarea#noteEditor {
