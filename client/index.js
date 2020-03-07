@@ -1,4 +1,4 @@
-import {whetherScrollBottom, bottomHeight} from './scrollBottom.js'
+import {whetherScrollBottom} from './scrollBottom.js'
 
 var md = window.markdownit({
     highlight: function (str, lang) {
@@ -70,16 +70,17 @@ function deleteLoadingIcon() {
     document.querySelector('#loading').innerHTML = ''
 }
 
-document.querySelector('textarea').onscroll = function() {
-    expandTextArea()
-}
-
 expandTextArea()
 function expandTextArea() {
     let dom = document.querySelector('textarea')
     while(dom.clientHeight < dom.scrollHeight) {
         dom.rows += 1
     }
+}
+
+document.querySelector('textarea').oninput = function() {
+    this.rows = 3
+    expandTextArea()
 }
 
 function Notes() {
