@@ -1,4 +1,5 @@
 import audoTextareaRows from './audoTextareaRows.js'
+import loadNextPageInBottom from './loadNextPage.js'
 
 
 var md = window.markdownit({
@@ -17,10 +18,10 @@ var md = window.markdownit({
 export default function Notes() {
     let notes = [];
     let getNotesUrl = "/notes"
-    let deleteNotesUrl = "/note"
-    let postNoteUrl = "/addNotes"
+    let deleteNoteUrl = "/note"
+    let postNoteUrl = "/addNote"
     let notesList = document.querySelector('#notesList ul')
-    let currentPage = 0
+    let self = this
     this.isLoading = false
     this.isLastPage = false
 
@@ -44,9 +45,22 @@ export default function Notes() {
     }
 
     this.loadPage = () => {
-        currentPage += 1
-        fetch(getNotesUrl + `/${currentPage}`, {
-            method: 'GET'
+        let lastDateOfRemainingItem
+        if(notes[notes.length-1] == undefined) {
+            // 启动页面后的第一次加载
+            lastDateOfRemainingItem = 0
+        } else {
+            lastDateOfRemainingItem = notes[notes.length-1].date
+        }
+
+        fetch(getNotesUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                lastDateOfRemainingItem
+            })
         }).then(reponse => reponse.json())
             .then(data => {
                 let newNotes = data.notes
@@ -100,7 +114,7 @@ export default function Notes() {
         //      方法1：先获取dom对应的序列号，然后从notes中获取对应序号的数据
         //    √ 方法2：给每个按钮的事件中加入数据
         // √ 2。发送到后端，在后端删除数据
-        fetch(deleteNotesUrl, {
+        fetch(deleteNoteUrl, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -122,6 +136,8 @@ export default function Notes() {
                 notesList.removeChild(
                     notesList.childNodes[index]
                 )
+
+                loadNextPageInBottom(self)
             })
     }
     function renderMarkdown(text) {

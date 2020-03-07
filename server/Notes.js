@@ -11,20 +11,31 @@ function Notes() {
     // done: 不能只在启动服务器的时候排序，得在每次用户请求的排序
     sortNotesByTime()
 
-    this.addNote = function(note) {
+    this.addNote = function (note) {
         sortNotesByTime()
         notes.push(note)
         writeJsonToDisk(notes)
         return notes
     }
 
-    this.getOnePageNotes = function(page) {
+    this.getOnePageNotes = function (lastDateOfRemainingItem) {
         sortNotesByTime()
-        let start = 10 * (page -1)
-        let end = 10 * page
+        let start, end
+        if (lastDateOfRemainingItem == 0) {
+            // 加载第一页
+            start = 0
+        } else {
+            notes.forEach((element, index) => {
+                if (element.date == lastDateOfRemainingItem) {
+                    start = (index + 1)
+                    return
+                }
+            })
+        }
+        end = start + 10
 
         let isLastPage = false
-        if(end >= notes.length) {
+        if (end >= notes.length) {
             isLastPage = true
         } else {
             isLastPage = false
@@ -37,16 +48,16 @@ function Notes() {
         }
     }
 
-    this.getAllNotes = function() {
+    this.getAllNotes = function () {
         sortNotesByTime()
         return notes
     }
 
-    this.deleteNote = function(date) {
+    this.deleteNote = function (date) {
         // √ 1。找到对应note在notes列表中的序号，删除对应的数据
         let index
         notes.forEach((ele, idx) => {
-            if(ele.date == date) {
+            if (ele.date == date) {
                 index = idx
             }
         });

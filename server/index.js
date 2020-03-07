@@ -10,15 +10,14 @@ const port = 3000
 app.use(express.json()) // for parsing application/json
 app.use(express.static('client'));
 
-// 请求所有notes
-app.get('/notes', (req, res) => {
-    res.send(notes.getAllNotes())
-})
 
 // 分页请求
-app.get('/notes/:page', (req, res) => {
+app.post('/notes', (req, res) => {
+    let lastDateOfRemainingItem = req.body.lastDateOfRemainingItem
     // 返回数据包含notes数组，isLastPage布尔值
-    res.send(notes.getOnePageNotes(req.params.page))
+    let response = notes.getOnePageNotes(lastDateOfRemainingItem)
+    res.send(response)
+
 })
 
 // done: 删除note
@@ -34,7 +33,7 @@ app.delete('/note', (req, res) => {
 
 
 // 新建note
-app.post('/addNotes', (req, res) => {
+app.post('/addNote', (req, res) => {
     notes.addNote({
         ...req.body
     })
