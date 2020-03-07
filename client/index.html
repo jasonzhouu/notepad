@@ -54,10 +54,16 @@
         function login() {
             localStorage.setItem('login', 'true')
             document.getElementById('publishNote').style.display = 'block'
+            document.querySelectorAll('#notesList > ul > li > button').forEach(element => {
+                element.style.display = 'inline'
+            })
         }
         function logout() {
             localStorage.setItem('login', 'false')
             document.getElementById('publishNote').style.display = 'none'
+            document.querySelectorAll('#notesList > ul > li > button').forEach(element => {
+                element.style.display = 'none'
+            })
         }
     </script>
 
