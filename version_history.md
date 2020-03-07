@@ -1,4 +1,4 @@
-# git tag v0.1 
+# git tag v0.1.0
 2018/03/08
 
 ![](./assets/mainpage_screenshot.png)
