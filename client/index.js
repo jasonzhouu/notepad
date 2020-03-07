@@ -2,6 +2,7 @@ import Notes from './Notes.js'
 import loadNextPage from './loadNextPage.js'
 
 let notes = new Notes()
+notes.loadPage()
 document.querySelector('#publishNote button').addEventListener('click', () => {
     publishNote()
 })

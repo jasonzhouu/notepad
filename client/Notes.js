@@ -21,8 +21,6 @@ export default function Notes() {
     let isLoading = false
     this.isLastPage = false
 
-    renderOnePageNotes.apply(this)
-
     this.publishtNote = function (note) {
         fetch(postNoteUrl, {
             method: 'POST',
@@ -35,15 +33,13 @@ export default function Notes() {
                 console.log(`post note status: ${data.status}`)
                 document.querySelector('#noteEditor').value = ""
                 notes.unshift(note)
-                renderNewNote(note)
+                showNewlyPublishedNote(note)
                 localStorage.setItem('textarea', '')
                 expandTextArea()
             })
     }
 
-    this.loadNextPage = renderOnePageNotes
-
-    function renderOnePageNotes() {
+    this.loadPage = () => {
         currentPage += 1
         isLoading = true
         return fetch(getNotesUrl+`/${currentPage}`, {
@@ -67,7 +63,7 @@ export default function Notes() {
         }
         notesList.append(...newRenderedNotes)
     }
-    function renderNewNote(note) {
+    function showNewlyPublishedNote(note) {
         let newNote = renderNote(note)
         newNote.style.cssText = 'max-height: 0px; background-color: #F5F8FA;'
         notesList.prepend(newNote)

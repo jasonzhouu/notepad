@@ -12,7 +12,7 @@ export default function showLoading(notes) {
             document.querySelector('#loading').innerHTML = 'loading...'
             // 等待1秒
             setTimeout(() => {
-                notes.loadNextPage()
+                notes.loadPage()
                     .then(() => {
                         isLoading = false
                     })
