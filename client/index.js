@@ -53,7 +53,7 @@ function Notes() {
     let notes = [];
     let getNotesUrl = "/notes"
     let postNoteUrl = "/addNotes"
-    let notesList = document.querySelector('#notesList')
+    let notesList = document.querySelector('#notesList ul')
     let currentPage = 0;
 
     renderOnePageNotes()
@@ -82,7 +82,7 @@ function Notes() {
         getNotes(getNotesUrl, currentPage)
         .then(data => {
             notes.push(...data)
-            showNotes()
+            renderNewRequestedNotes(data)
         })
     }
     function getNotes(url, page) {
@@ -90,22 +90,18 @@ function Notes() {
             method: 'GET'
         }).then(reponse => reponse.json())
     }
-    function showNotes() {
-        let ul = renderNotes(notes);
-        notesList.replaceChild(ul, notesList.firstChild);
-    }
-    function renderNotes(notes) {
-        let ul = document.createElement('ul')
-        for (const note of notes) {
-            let li = renderNote(note)
-            ul.appendChild(li)
+    function renderNewRequestedNotes(data) {
+        let newRenderedNotes = []
+        for (const note of data) {
+            newRenderedNotes.push(renderNote(note))
         }
-        return ul
+        // 新加载的notes放在末尾
+        notesList.append(...newRenderedNotes)
     }
     function renderNewNote(note) {
         let newNote = renderNote(note)
         newNote.style.cssText = 'max-height: 0px'
-        notesList.querySelector('ul').prepend(newNote)
+        notesList.prepend(newNote)
         setTimeout(() => {
             document.querySelector('#notesList ul').firstChild.style.cssText = 'max-height: 1000px'
         }, 500);
