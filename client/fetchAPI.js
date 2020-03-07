@@ -1,6 +1,6 @@
-let getNotesUrl = "/notes"
-let deleteNoteUrl = "/note"
-let postNoteUrl = "/addNote"
+const getNotesUrl = "/notes"
+const deleteNoteUrl = "/note"
+const postNoteUrl = "/addNote"
 
 
 export function getNotesAPI(lastDateOfRemainingItem) {
