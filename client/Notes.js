@@ -21,7 +21,7 @@ export default function Notes() {
     let postNoteUrl = "/addNotes"
     let notesList = document.querySelector('#notesList ul')
     let currentPage = 0
-    let isLoading = false
+    this.isLoading = false
     this.isLastPage = false
 
     this.publishNote = function (note) {
@@ -44,20 +44,19 @@ export default function Notes() {
 
     this.loadPage = () => {
         currentPage += 1
-        isLoading = true
-        return fetch(getNotesUrl+`/${currentPage}`, {
+        fetch(getNotesUrl + `/${currentPage}`, {
             method: 'GET'
         }).then(reponse => reponse.json())
-        .then(data => {
-            let newNotes = data.notes
-            notes.push(...newNotes)
-            this.isLastPage = data.isLastPage
-            // 加载到下一页的数据后，转成DOM，并附加到末尾
-            renderNewRequestedNotes(newNotes)
-            // 去掉加载按钮
-            document.querySelector('#loading').innerHTML = ''
-            isLoading = false
-        })
+            .then(data => {
+                let newNotes = data.notes
+                notes.push(...newNotes)
+                this.isLastPage = data.isLastPage
+                // 加载到下一页的数据后，转成DOM，并附加到末尾
+                renderNewRequestedNotes(newNotes)
+                // 去掉加载按钮
+                document.querySelector('#loading').innerHTML = ''
+                this.isLoading = false
+            })
     }
     function renderNewRequestedNotes(data) {
         let newRenderedNotes = []
@@ -107,22 +106,22 @@ export default function Notes() {
             },
             body: JSON.stringify({ date })
         }).then(response => response.json())
-        // 3。后端返回成功删除数据的消息后：
-        .then(data => {
-            console.log(data.status)
-            // 3。1找到对应note在notes列表中的序号，删除对应的数据
-            let index
-            notes.forEach((ele, idx) => {
-                if (ele.date == date) {
-                    index = idx
-                }
-            });
-            notes.splice(index, 1)
-            // 3。2 将其dom移除
-            notesList.removeChild(
-                notesList.childNodes[index]
-            )
-        })
+            // 3。后端返回成功删除数据的消息后：
+            .then(data => {
+                console.log(data.status)
+                // 3。1找到对应note在notes列表中的序号，删除对应的数据
+                let index
+                notes.forEach((ele, idx) => {
+                    if (ele.date == date) {
+                        index = idx
+                    }
+                });
+                notes.splice(index, 1)
+                // 3。2 将其dom移除
+                notesList.removeChild(
+                    notesList.childNodes[index]
+                )
+            })
     }
     function renderMarkdown(text) {
         return md.render(text);
@@ -140,22 +139,22 @@ export default function Notes() {
         let nowDay = now.getDate()
 
         let dateFormat = ''
-        if(year != nowYear) {
+        if (year != nowYear) {
             // 不是今年发的，显示年月日
             dateFormat = `${year}/${month}/${day}`
-        } else if(month != nowMonth  || day != nowDay) {
+        } else if (month != nowMonth || day != nowDay) {
             // 不是今天发的，只显示月、日
             dateFormat = `${month}/${day}`
-        } else if( year == nowYear && month == nowMonth && day == nowDay) {
+        } else if (year == nowYear && month == nowMonth && day == nowDay) {
             // 今天发的，只显示多久之前
             let interval = now - dateObject
-            let second = (interval/1000).toFixed(0)
-            let minute = (second%3600/60).toFixed(0)
-            let hour = (second/3600).toFixed(0)
-            second = second%3600%60
-            if(hour >= 1) {
+            let second = (interval / 1000).toFixed(0)
+            let minute = (second % 3600 / 60).toFixed(0)
+            let hour = (second / 3600).toFixed(0)
+            second = second % 3600 % 60
+            if (hour >= 1) {
                 dateFormat = `${hour}h ago`
-            } else if(minute >= 1) {
+            } else if (minute >= 1) {
                 dateFormat = `${minute}m ago`
             } else {
                 dateFormat = `${second}s ago`
