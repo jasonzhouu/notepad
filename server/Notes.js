@@ -21,8 +21,20 @@ function Notes() {
     this.getOnePageNotes = function(page) {
         sortNotesByTime()
         let start = 10 * (page -1)
-        let end = 10 * page - 1
-        return notes.slice(start, end)
+        let end = 10 * page
+
+        let isLastPage = false
+        if(end >= notes.length) {
+            isLastPage = true
+        } else {
+            isLastPage = false
+        }
+
+        // 返回成员的序号从start到end-1
+        return {
+            notes: notes.slice(start, end),
+            isLastPage
+        }
     }
 
     this.getAllNotes = function() {

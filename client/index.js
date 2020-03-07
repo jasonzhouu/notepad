@@ -89,7 +89,8 @@ function Notes() {
     let deleteNotesUrl = "/note"
     let postNoteUrl = "/addNotes"
     let notesList = document.querySelector('#notesList ul')
-    let currentPage = 0;
+    let currentPage = 0
+    let isLastPage = false
 
     renderOnePageNotes()
 
@@ -114,25 +115,24 @@ function Notes() {
 
     function renderOnePageNotes() {
         currentPage += 1
-        getNotes(getNotesUrl, currentPage)
+        fetch(getNotesUrl+`/${currentPage}`, {
+            method: 'GET'
+        }).then(reponse => reponse.json())
         .then(data => {
-            notes.push(...data)
-            renderNewRequestedNotes(data)
+            let newNotes = data.notes
+            notes.push(...newNotes)
+            isLastPage = data.isLastPage
+            // 加载到下一页的数据后，转成DOM，并附加到末尾
+            renderNewRequestedNotes(newNotes)
             // 去掉加载按钮
             deleteLoadingIcon()
         })
-    }
-    function getNotes(url, page) {
-        return fetch(url+`/${page}`, {
-            method: 'GET'
-        }).then(reponse => reponse.json())
     }
     function renderNewRequestedNotes(data) {
         let newRenderedNotes = []
         for (const note of data) {
             newRenderedNotes.push(renderNote(note))
         }
-        // 新加载的notes放在末尾
         notesList.append(...newRenderedNotes)
     }
     function renderNewNote(note) {

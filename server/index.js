@@ -17,6 +17,7 @@ app.get('/notes', (req, res) => {
 
 // 分页请求
 app.get('/notes/:page', (req, res) => {
+    // 返回数据包含notes数组，isLastPage布尔值
     res.send(notes.getOnePageNotes(req.params.page))
 })
 
