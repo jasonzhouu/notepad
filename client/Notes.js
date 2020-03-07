@@ -1,28 +1,19 @@
 import audoTextareaRows from './audoTextareaRows.js'
 import loadNextPageInBottom from './loadNextPage.js'
-
+import { getNotesAPI, postNoteAPI, deleteNoteAPI } from './fetchAPI.js'
 
 
 
 
 export default function Notes() {
     let notes = [];
-    let getNotesUrl = "/notes"
-    let deleteNoteUrl = "/note"
-    let postNoteUrl = "/addNote"
     let notesList = document.querySelector('#notesList ul')
     let self = this
     this.isLoading = false
     this.isLastPage = false
 
     this.publishNote = function (note) {
-        fetch(postNoteUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(note)
-        }).then(response => response.json())
+        postNoteAPI(note)
             .then(data => {
                 console.log(`post note status: ${data.status}`)
                 document.querySelector('#noteEditor').value = ""
@@ -43,15 +34,7 @@ export default function Notes() {
             lastDateOfRemainingItem = notes[notes.length - 1].date
         }
 
-        fetch(getNotesUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                lastDateOfRemainingItem
-            })
-        }).then(reponse => reponse.json())
+        getNotesAPI(lastDateOfRemainingItem)
             .then(data => {
                 let newNotes = data.notes
                 notes.push(...newNotes)
@@ -91,7 +74,7 @@ export default function Notes() {
 
         let deleteButton = document.createElement('button')
         deleteButton.textContent = '×'
-        deleteButton.addEventListener('click', event => {
+        deleteButton.addEventListener('click', () => {
             deleteNote(note.date)
         })
         li.appendChild(deleteButton)
@@ -104,13 +87,7 @@ export default function Notes() {
         //      方法1：先获取dom对应的序列号，然后从notes中获取对应序号的数据
         //    √ 方法2：给每个按钮的事件中加入数据
         // √ 2。发送到后端，在后端删除数据
-        fetch(deleteNoteUrl, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ date })
-        }).then(response => response.json())
+        deleteNoteAPI(date)
             // 3。后端返回成功删除数据的消息后：
             .then(data => {
                 console.log(data.status)
