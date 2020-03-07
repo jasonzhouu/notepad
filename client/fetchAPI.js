@@ -1,13 +1,14 @@
-const getNotesUrl = "/notes"
-const deleteNoteUrl = "/note"
-const postNoteUrl = "/addNote"
+const Url = {
+    getNotes: '/notes',
+    deleteNote: '/note',
+    postNote: '/addNote'
+}
 
 const fetchMethod = {
     get: 'GET',
     post: 'POST',
     delete: 'DELETE'
 }
-
 
 const fetchAPI = (url, method) => {
     return (data) => {
@@ -21,6 +22,6 @@ const fetchAPI = (url, method) => {
     }
 }
 
-export const getNotesAPI = fetchAPI(getNotesUrl, fetchMethod.post);
-export const postNoteAPI = fetchAPI(postNoteUrl, fetchMethod.post)
-export const deleteNoteAPI = fetchAPI(deleteNoteUrl, fetchMethod.delete)
+export const getNotesAPI = fetchAPI(Url.getNotes, fetchMethod.post);
+export const postNoteAPI = fetchAPI(Url.postNote, fetchMethod.post)
+export const deleteNoteAPI = fetchAPI(Url.deleteNote, fetchMethod.delete)
