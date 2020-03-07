@@ -3,6 +3,9 @@ import loadNextPageInBottom from './loadNextPage.js'
 
 
 var md = window.markdownit({
+    breaks: true,
+    linkify: true,
+    typographer: true,
     highlight: function (str, lang) {
         if (lang && hljs.getLanguage(lang)) {
             try {
@@ -46,11 +49,11 @@ export default function Notes() {
 
     this.loadPage = () => {
         let lastDateOfRemainingItem
-        if(notes[notes.length-1] == undefined) {
+        if (notes[notes.length - 1] == undefined) {
             // 启动页面后的第一次加载
             lastDateOfRemainingItem = 0
         } else {
-            lastDateOfRemainingItem = notes[notes.length-1].date
+            lastDateOfRemainingItem = notes[notes.length - 1].date
         }
 
         fetch(getNotesUrl, {

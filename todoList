@@ -45,13 +45,13 @@ DOM将最新的排在最前，notes也将最新的排在最前。
 1。2 后端找到对应的note，往后算10个，发送出去
   办法2：前端删除数据在后端只是做个标记，但不真的删，从而不影响它的序列。
 但是这会影响到请求页面数据的逻辑，需要后端先将没有做删除标记的部分筛选出来，做排序，但是这又同样造成上面的问题。
+@done: 识别note中的链接，可点击
+
+@todo: 美化markdown渲染效果：quote、代码外边框
 
 
-
-@todo: 美化markdown渲染效果
 @todo: 输入框focus时，placeholder 颜色变浅
 @todo: 确认是否要删除
-@todo: 识别note中的链接，可点击
 @todo: 将edit, delete放在下拉框中
 @todo: 代码超出页面宽度，可以scroll。<code>标签
 @todo: 右上角搜索框
