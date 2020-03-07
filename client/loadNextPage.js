@@ -11,7 +11,7 @@ export default function loadNextPageInBottom(notes) {
             // 显示正在加载
             isLoading = true
             document.querySelector('#loading').innerHTML = 'loading...'
-            // 等待1秒
+            // 等待1秒后开始加载下一页，以免加载太快，导致还没看到loading...就加载出来了
             setTimeout(() => {
                 notes.loadPage()
                     .then(() => {
