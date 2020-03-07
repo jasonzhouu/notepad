@@ -12,7 +12,9 @@ notes.loadPage()
 
 
 // 注册滑到底部时，加载下一页的事件
-loadNextPageInBottom(notes)
+window.onscroll = () => {
+    loadNextPageInBottom(notes)
+}
 
 
 
