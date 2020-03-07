@@ -104,7 +104,7 @@ function Notes() {
             .then(data => {
                 console.log(`post note status: ${data.status}`)
                 document.querySelector('#noteEditor').value = ""
-                notes.push(note)
+                notes.unshift(note)
                 renderNewNote(note)
                 localStorage.setItem('textarea', '')
                 expandTextArea()
