@@ -19,7 +19,8 @@ body {
     margin-bottom: -1px;
     margin-top: 0px;
     overflow: hidden;
-    transition: all 0.3s;
+    transition: background-color 0.3s;
+    transition: max-height 5s;
     position: relative;
 }
 #notesList > ul > li:hover {
