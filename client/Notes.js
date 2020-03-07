@@ -68,10 +68,10 @@ export default function Notes() {
     }
     function showNewlyPublishedNote(note) {
         let newNote = renderNote(note)
-        newNote.style.cssText = 'max-height: 0px; background-color: #F5F8FA;'
+        newNote.style.cssText = 'background-color: #F5F8FA;'
         notesList.prepend(newNote)
         setTimeout(() => {
-            document.querySelector('#notesList ul').firstChild.style.cssText = 'max-height: 1000px; background-color: none;'
+            document.querySelector('#notesList ul').firstChild.style.cssText = 'background-color: none;'
         }, 500);
     }
     function renderNote(note) {
