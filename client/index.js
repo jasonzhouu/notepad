@@ -86,6 +86,7 @@ document.querySelector('textarea').oninput = function() {
 function Notes() {
     let notes = [];
     let getNotesUrl = "/notes"
+    let deleteNotesUrl = "/note"
     let postNoteUrl = "/addNotes"
     let notesList = document.querySelector('#notesList ul')
     let currentPage = 0;
@@ -156,18 +157,41 @@ function Notes() {
         let deleteButton = document.createElement('button')
         deleteButton.textContent = '×'
         deleteButton.addEventListener('click', event => {
-            deleteNote(event.target)
+            deleteNote(note.date)
         })
         li.appendChild(deleteButton)
 
         return li
     }
-    function deleteNote(dom) {
+    function deleteNote(date) {
         // @todo: 删除note，步骤：
-        // 1。发送到后端，在后端删除数据
-        // 2。后端返回成功删除数据的消息后：
-        //      将其从notes数据列表中删除；
-        //      将其dom移除。
+        // √ 1。获取dom对应的数据：date
+        //      方法1：先获取dom对应的序列号，然后从notes中获取对应序号的数据
+        //    √ 方法2：给每个按钮的事件中加入数据
+        // √ 2。发送到后端，在后端删除数据
+        fetch(deleteNotesUrl, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ date })
+        }).then(response => response.json())
+        // 3。后端返回成功删除数据的消息后：
+        .then(data => {
+            console.log(data.status)
+            // 3。1找到对应note在notes列表中的序号，删除对应的数据
+            let index
+            notes.forEach((ele, idx) => {
+                if (ele.date == date) {
+                    index = idx
+                }
+            });
+            notes.splice(index, 1)
+            // 3。2 将其dom移除
+            notesList.removeChild(
+                notesList.childNodes[index]
+            )
+        })
     }
     function renderMarkdown(text) {
         return md.render(text);

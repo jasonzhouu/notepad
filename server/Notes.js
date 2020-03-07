@@ -14,7 +14,7 @@ function Notes() {
     this.addNote = function(note) {
         sortNotesByTime()
         notes.push(note)
-        fs.writeFileSync(jsonPath, JSON.stringify(notes, null, '\t'));
+        writeJsonToDisk(notes)
         return notes
     }
 
@@ -30,8 +30,25 @@ function Notes() {
         return notes
     }
 
+    this.deleteNote = function(date) {
+        // √ 1。找到对应note在notes列表中的序号，删除对应的数据
+        let index
+        notes.forEach((ele, idx) => {
+            if(ele.date == date) {
+                index = idx
+            }
+        });
+        notes.splice(index, 1)
+        // √ 2。写入json
+        writeJsonToDisk(notes)
+    }
+
     function sortNotesByTime() {
         notes = notes.sort((i, j) => (j.date - i.date))
+    }
+
+    function writeJsonToDisk(notes) {
+        fs.writeFileSync(jsonPath, JSON.stringify(notes, null, '\t'));
     }
 }
 

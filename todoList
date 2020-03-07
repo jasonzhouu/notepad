@@ -26,9 +26,10 @@
 @done: 发布 note
 @done: 将 markdown 格式的notes渲染成html
 @done: 流媒体
+@done: 删除note
 
 @todo: 发布图片
 @todo: 权限系统，需要输入密码登录，或者将输入框不放在主页
 @todo: 编辑note
-@todo: 删除note
 @todo: 搜索
+@todo: 快删除到底，屏幕底部有空白时，加载下一页

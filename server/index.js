@@ -20,14 +20,25 @@ app.get('/notes/:page', (req, res) => {
     res.send(notes.getOnePageNotes(req.params.page))
 })
 
+// todo: 删除note
+// √ 1。建立路由, 将date作为唯一标志
+app.delete('/note', (req, res) => {
+    let date = req.body.date
+    // √ 2。交给notes对象，删除内存中的note；删除json中的note；
+    notes.deleteNote(date)
+    res.send({
+        status: 'delete success'
+    })
+})
 
 
+// 新建note
 app.post('/addNotes', (req, res) => {
     notes.addNote({
         ...req.body
     })
     res.send({
-        status: 'success'
+        status: 'add notes success'
     })
 })
 
