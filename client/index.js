@@ -1,3 +1,5 @@
+import whetherScrollBottom from './scrollBottom.js'
+
 var md = window.markdownit({
     highlight: function (str, lang) {
         if (lang && hljs.getLanguage(lang)) {
@@ -34,6 +36,11 @@ document.querySelector('#noteEditor').addEventListener('input', event => {
     localStorage.setItem('textarea', document.querySelector('#noteEditor').value)
 })
 document.querySelector('#noteEditor').value = localStorage.getItem('textarea')
+
+// 滑到到底部
+window.onscroll = function () {
+    whetherScrollBottom();
+};
 
 // 点击下一页
 document.querySelector('#notesList button').addEventListener('click', event => {
