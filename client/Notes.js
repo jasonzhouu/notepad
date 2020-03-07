@@ -39,7 +39,7 @@ export default function Notes() {
                 showNewlyPublishedNote(note)
                 localStorage.setItem('textarea', '')
                 document.querySelector('#markdownPreview').innerHTML = ''
-                audoTextareaRows()
+                audoTextareaRows(this)
             })
     }
 
