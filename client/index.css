@@ -24,6 +24,10 @@ body {
     color: #999;
 }
 
+#notesList > ul > li > button {
+    float: right;
+}
+
 
 /* 输入框 */
 #publishNote {
