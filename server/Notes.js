@@ -26,9 +26,7 @@ function Notes() {
     }
 
     function sortNotesByTime() {
-        notes = notes.sort((i, j) => {
-            return (j.date - i.date)
-        })
+        notes = notes.sort((i, j) => (j.date - i.date))
     }
 }
 

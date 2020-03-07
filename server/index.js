@@ -27,7 +27,7 @@ app.post('/addNotes', (req, res) => {
         ...req.body
     })
     res.send({
-        status: 'sucess'
+        status: 'success'
     })
 })
 
