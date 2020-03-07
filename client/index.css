@@ -13,11 +13,17 @@ body {
 }
 
 #notesList > ul > li {
-    background-color: #ddd;
     padding: 1em;
     margin: 1em 0;
+    border: 1px solid #ddd;
+    margin-bottom: -1px;
+    margin-top: 0px;
     transition: all 4s;
     overflow: hidden;
+    transition: all 0.5s;
+}
+#notesList > ul > li:hover {
+    background-color: #F5F8FA;
 }
 
 #notesList > ul > li > span {
