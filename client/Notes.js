@@ -1,3 +1,6 @@
+import audoTextareaRows from './audoTextareaRows.js'
+
+
 var md = window.markdownit({
     highlight: function (str, lang) {
         if (lang && hljs.getLanguage(lang)) {
@@ -21,7 +24,7 @@ export default function Notes() {
     let isLoading = false
     this.isLastPage = false
 
-    this.publishtNote = function (note) {
+    this.publishNote = function (note) {
         fetch(postNoteUrl, {
             method: 'POST',
             headers: {
@@ -35,7 +38,7 @@ export default function Notes() {
                 notes.unshift(note)
                 showNewlyPublishedNote(note)
                 localStorage.setItem('textarea', '')
-                expandTextArea()
+                audoTextareaRows()
             })
     }
 

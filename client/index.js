@@ -1,17 +1,20 @@
 import Notes from './Notes.js'
-import loadNextPage from './loadNextPage.js'
+import loadNextPageInBottom from './loadNextPage.js'
 import audoTextareaRows from './audoTextareaRows.js'
+import addPublishNoteEvent from './addPublishNoteEvent.js'
 
 let notes = new Notes()
 notes.loadPage()
-document.querySelector('#publishNote button').addEventListener('click', () => {
-    publishNote()
-})
 
 
 
-loadNextPage(notes)
+// 注册滑到底部时，加载下一页的事件
+loadNextPageInBottom(notes)
 
+
+
+// 注册发布note的事件
+addPublishNoteEvent(notes)
 
 
 
@@ -24,36 +27,8 @@ document.querySelector('#noteEditor').value = localStorage.getItem('textarea')
 
 
 
-// 自动伸缩输入框的高度
+// 自动伸缩输入框的高度的3个时刻：刚加载页面、输入内容、发布内容
 audoTextareaRows()
 document.querySelector('textarea').oninput = audoTextareaRows
-
-
-// 同时按下 ctrl, enter 键时，发布文章
-document.addEventListener('keydown', event => {
-    const keyName = event.key;
-
-    if (keyName === 'Control') {
-        // 如果只按ctl键，不做任何事
-        return;
-    }
-    if (event.ctrlKey && keyName === 'Enter') {
-        // 同时按下 ctrl, enter 键
-        publishNote()
-    }
-})
-
-
-
-function publishNote() {
-    let content = document.querySelector('#noteEditor').value
-    // 当内容为空时，不发布
-    if (content.trim() == '') return;
-    let date = Date.now()
-    notes.publishtNote({
-        date,
-        content
-    })
-}
 
 
