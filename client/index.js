@@ -162,12 +162,12 @@ function Notes() {
         let dateObject = new Date(date)
 
         let year = dateObject.getFullYear()
-        let month = dateObject.getMonth()
+        let month = dateObject.getMonth() + 1 // getMonth()返回的0表示一月
         let day = dateObject.getDate()
 
         let now = new Date()
         let nowYear = now.getFullYear()
-        let nowMonth = now.getMonth()
+        let nowMonth = now.getMonth() + 1
         let nowDay = now.getDate()
 
         let dateFormat = ''
