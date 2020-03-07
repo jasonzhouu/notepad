@@ -1,12 +1,33 @@
 import Notes from './Notes.js'
 import loadNextPage from './loadNextPage.js'
+import audoTextareaRows from './audoTextareaRows.js'
 
 let notes = new Notes()
 notes.loadPage()
 document.querySelector('#publishNote button').addEventListener('click', () => {
     publishNote()
 })
+
+
+
 loadNextPage(notes)
+
+
+
+
+// 输入文字时，将其保存到本地，以便刷新时从中读取
+document.querySelector('#noteEditor').addEventListener('input', event => {
+    localStorage.setItem('textarea', document.querySelector('#noteEditor').value)
+})
+document.querySelector('#noteEditor').value = localStorage.getItem('textarea')
+
+
+
+
+// 自动伸缩输入框的高度
+audoTextareaRows()
+document.querySelector('textarea').oninput = audoTextareaRows
+
 
 // 同时按下 ctrl, enter 键时，发布文章
 document.addEventListener('keydown', event => {
@@ -22,11 +43,7 @@ document.addEventListener('keydown', event => {
     }
 })
 
-// 输入文字时，将其保存到本地，以便刷新时从中读取
-document.querySelector('#noteEditor').addEventListener('input', event => {
-    localStorage.setItem('textarea', document.querySelector('#noteEditor').value)
-})
-document.querySelector('#noteEditor').value = localStorage.getItem('textarea')
+
 
 function publishNote() {
     let content = document.querySelector('#noteEditor').value
@@ -40,20 +57,3 @@ function publishNote() {
 }
 
 
-expandTextArea()
-function expandTextArea() {
-    let textarea = document.querySelector('textarea')
-    textarea.rows = 3
-    while (textarea.clientHeight < textarea.scrollHeight) {
-        textarea.rows += 1
-    }
-    // 当内容为空时，将按钮调暗
-    let submit = document.querySelector('#publishNote > button')
-    if (textarea.value.trim() != '') {
-        submit.classList.add('active')
-    } else {
-        submit.classList.remove('active')
-    }
-}
-
-document.querySelector('textarea').oninput = expandTextArea
