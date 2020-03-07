@@ -90,7 +90,6 @@ body > h1 {
     padding: 10px;
     border: 1px solid #E6ECF0;
     border-bottom: 10px solid #E6ECF0;
-    display: none;
 }
 /* 参考 https://css-tricks.com/textarea-tricks/ */
 textarea#noteEditor {

@@ -55,6 +55,10 @@
             localStorage.setItem('login', 'true')
             document.getElementById('publishNote').style.display = 'block'
         }
+        function logout() {
+            localStorage.setItem('login', 'false')
+            document.getElementById('publishNote').style.display = 'none'
+        }
     </script>
 
     <script src="./index.js" type="module"></script>
