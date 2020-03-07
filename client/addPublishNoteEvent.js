@@ -18,10 +18,6 @@ export default function addPublishNoteEvent(notes) {
         }
     })
     
-    
-    
-    
-    
     function publishNote() {
         let content = document.querySelector('#noteEditor').value
         // 当内容为空时，不发布

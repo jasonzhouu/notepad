@@ -3,7 +3,10 @@ import loadNextPageInBottom from './loadNextPage.js'
 import audoTextareaRows from './audoTextareaRows.js'
 import addPublishNoteEvent from './addPublishNoteEvent.js'
 
+
+
 let notes = new Notes()
+// 加载第一页
 notes.loadPage()
 
 
