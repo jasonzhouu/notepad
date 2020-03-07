@@ -17,7 +17,7 @@ app.get('/notes', (req, res) => {
 
 // 分页请求
 app.get('/notes/:page', (req, res) => {
-    res.send(notes.getNotes(req.params.page))
+    res.send(notes.getOnePageNotes(req.params.page))
 })
 
 
