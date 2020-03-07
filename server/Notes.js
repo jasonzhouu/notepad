@@ -20,19 +20,8 @@ function Notes() {
 
     this.getOnePageNotes = function (lastDateOfRemainingItem) {
         sortNotesByTime()
-        let start, end
-        if (lastDateOfRemainingItem == 0) {
-            // 加载第一页
-            start = 0
-        } else {
-            notes.forEach((element, index) => {
-                if (element.date == lastDateOfRemainingItem) {
-                    start = (index + 1)
-                    return
-                }
-            })
-        }
-        end = start + 10
+        let start = calcNextPageIndex(lastDateOfRemainingItem)
+        let end = start + 10
 
         let isLastPage = false
         if (end >= notes.length) {
@@ -72,6 +61,22 @@ function Notes() {
 
     function writeJsonToDisk(notes) {
         fs.writeFileSync(jsonPath, JSON.stringify(notes, null, '\t'));
+    }
+
+    function calcNextPageIndex(lastDateOfRemainingItem) {
+        let start
+        if (lastDateOfRemainingItem == 0) {
+            // 加载第一页
+            start = 0
+        } else {
+            notes.forEach((element, index) => {
+                if (element.date == lastDateOfRemainingItem) {
+                    start = (index + 1)
+                    return
+                }
+            })
+        }
+        return start
     }
 }
 

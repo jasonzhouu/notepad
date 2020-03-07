@@ -8,10 +8,13 @@ const port = 3000
 
 
 app.use(express.json()) // for parsing application/json
+
+
+// 静态文件
 app.use(express.static('client'));
 
 
-// 分页请求
+// 路由1：分页请求
 app.post('/notes', (req, res) => {
     let lastDateOfRemainingItem = req.body.lastDateOfRemainingItem
     // 返回数据包含notes数组，isLastPage布尔值
@@ -20,7 +23,7 @@ app.post('/notes', (req, res) => {
 
 })
 
-// done: 删除note
+// 路由2: 删除note
 // √ 1。建立路由, 将date作为唯一标志
 app.delete('/note', (req, res) => {
     let date = req.body.date
@@ -32,7 +35,7 @@ app.delete('/note', (req, res) => {
 })
 
 
-// 新建note
+// 路由3：新建note
 app.post('/addNote', (req, res) => {
     notes.addNote({
         ...req.body.note
