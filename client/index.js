@@ -1,4 +1,4 @@
-import {whetherScrollBottom} from './scrollBottom.js'
+import whetherScrollBottom from './scrollBottom.js'
 
 var md = window.markdownit({
     highlight: function (str, lang) {
