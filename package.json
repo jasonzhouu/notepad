@@ -5,7 +5,7 @@
   "main": "server/index.js",
   "scripts": {
     "start": "node .",
-    "cloc": "cloc . --exclude-dir=node_modules,test --exclude-ext=json"
+    "cloc": "cloc . --exclude-dir=node_modules,test --exclude-ext=json,md"
   },
   "repository": {
     "type": "git",

@@ -3,8 +3,6 @@ import loadNextPageInBottom from './loadNextPage.js'
 import { getNotesAPI, postNoteAPI, deleteNoteAPI } from './fetchAPI.js'
 import parseDate from './parseDate.js'
 
-
-
 export default function Notes() {
     let notes = [];
     let notesList = document.querySelector('#notesList ul')
@@ -15,7 +13,7 @@ export default function Notes() {
     this.publishNote = function (note) {
         postNoteAPI({note})
             .then(data => {
-                console.log(`post note status: ${data.status}`)
+                console.log(data.status)
                 document.querySelector('#noteEditor').value = ""
                 notes.unshift(note)
                 showNewlyPublishedNote(note)
@@ -110,5 +108,4 @@ export default function Notes() {
     function renderMarkdown(text) {
         return md.render(text);
     }
-    
 }
