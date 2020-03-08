@@ -84,6 +84,7 @@ export default function Notes() {
         return li
     }
     function deleteNote(date) {
+        alert('真的要删除吗')
         // @done: 删除note，步骤：
         // √ 1。获取dom对应的数据：date
         //      方法1：先获取dom对应的序列号，然后从notes中获取对应序号的数据
