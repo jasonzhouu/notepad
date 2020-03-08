@@ -58,5 +58,6 @@ async function hash(message) {
 }
 
 function saveRandomNumberToCookie(randomNumber) {
-    document.cookie = `randomNumber=${randomNumber}`;
+    let maxAge = 60*60*24*30 // 1个月
+    document.cookie = `randomNumber=${randomNumber}; max-age=${maxAge}`;
 }
