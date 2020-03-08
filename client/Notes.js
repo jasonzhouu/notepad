@@ -60,7 +60,7 @@ export default function Notes() {
         newNote.style.cssText = 'background-color: #F5F8FA;'
         notesList.prepend(newNote)
         setTimeout(() => {
-            document.querySelector('#notesList ul').firstChild.style.cssText = 'background-color: none;'
+            newNote.style.cssText = 'background-color: none;'
         }, 500);
     }
     function renderNote(note) {
