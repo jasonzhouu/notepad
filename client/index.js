@@ -1,7 +1,7 @@
 import Notes from './Notes.js'
-import loadNextPageInBottom from './loadNextPage.js'
-import audoTextareaRows from './audoTextareaRows.js'
-import addPublishNoteEvent from './addPublishNoteEvent.js'
+import loadNextPageInBottom from './utils/loadNextPage.js'
+import audoTextareaRows from './utils/audoTextareaRows.js'
+import addPublishNoteEvent from './utils/addPublishNoteEvent.js'
 
 
 

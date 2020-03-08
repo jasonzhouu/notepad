@@ -1,7 +1,7 @@
-import audoTextareaRows from './audoTextareaRows.js'
-import loadNextPageInBottom from './loadNextPage.js'
-import { getNotesAPI, postNoteAPI, deleteNoteAPI } from './fetchAPI.js'
-import parseDate from './parseDate.js'
+import audoTextareaRows from './utils/audoTextareaRows.js'
+import loadNextPageInBottom from './utils/loadNextPage.js'
+import { getNotesAPI, postNoteAPI, deleteNoteAPI } from './utils/fetchAPI.js'
+import parseDate from './utils/parseDate.js'
 import showDialog from './utils/showDialog.js'
 
 export default function Notes() {
