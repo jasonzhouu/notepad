@@ -50,6 +50,9 @@ function Notes() {
                 index = idx
             }
         });
+        // @todo: 数据在json文件和内存中存了2份，如果直接更多json文件，内存中的数据并不会同步，
+        // 由于返回给前端用的是内存中的数据，而没有从json文件中读取，刷新内存中的数据，从而造成返回内存中的旧数据
+        // 但是频繁写入、读取文件性能不好，最好的解决办法就是使用专门的数据库软件来管理数据
         notes.splice(index, 1)
         // √ 2。写入json
         writeJsonToDisk(notes)

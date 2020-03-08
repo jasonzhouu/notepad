@@ -1,7 +1,7 @@
 const express = require('express')
 const fs = require('fs')
 const Notes = require('./Notes')
-const hash = require('./hash')
+const hash = require('./utils/hash')
 
 const app = express()
 const notes = new Notes()
