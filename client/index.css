@@ -48,7 +48,7 @@ body > h1 {
     margin-bottom: -1px;
     margin-top: 0px;
     overflow: hidden;
-    transition: background-color 0.5s;
+    transition: background-color 2s;
     position: relative;
 }
 #notesList > ul > li:hover {

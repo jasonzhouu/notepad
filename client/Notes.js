@@ -57,7 +57,7 @@ export default function Notes() {
     }
     function showNewlyPublishedNote(note) {
         let newNote = renderNote(note)
-        newNote.style.cssText = 'background-color: #F5F8FA;'
+        newNote.style.cssText = 'background-color: #FFF3CD;'
         notesList.prepend(newNote)
         setTimeout(() => {
             newNote.style.cssText = 'background-color: none;'
