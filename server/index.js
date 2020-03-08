@@ -102,6 +102,15 @@ app.post('/login', (req, res) => {
 })
 
 
+// 路由5：单个note数据
+app.post('/note', (req, res) => {
+    let date = parseInt(req.body.date)
+    res.send({
+        note: notes.getOneNote(date)
+    })
+})
+
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}!`)
 })

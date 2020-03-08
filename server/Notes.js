@@ -18,6 +18,12 @@ function Notes() {
         return notes
     }
 
+    this.getOneNote = function (date) {
+        let index = getIndexOfDate(date)
+        if(index == null) return 'no result'
+        return notes[index]
+    }
+
     this.getOnePageNotes = function (lastDateOfRemainingItem) {
         sortNotesByTime()
         let start = calcNextPageIndex(lastDateOfRemainingItem)
@@ -44,12 +50,7 @@ function Notes() {
 
     this.deleteNote = function (date) {
         // √ 1。找到对应note在notes列表中的序号，删除对应的数据
-        let index
-        notes.forEach((ele, idx) => {
-            if (ele.date == date) {
-                index = idx
-            }
-        });
+        let index = getIndexOfDate(date)
         // @todo: 数据在json文件和内存中存了2份，如果直接更多json文件，内存中的数据并不会同步，
         // 由于返回给前端用的是内存中的数据，而没有从json文件中读取，刷新内存中的数据，从而造成返回内存中的旧数据
         // 但是频繁写入、读取文件性能不好，最好的解决办法就是使用专门的数据库软件来管理数据
@@ -72,14 +73,19 @@ function Notes() {
             // 加载第一页
             start = 0
         } else {
-            notes.forEach((element, index) => {
-                if (element.date == lastDateOfRemainingItem) {
-                    start = (index + 1)
-                    return
-                }
-            })
+            start = getIndexOfDate(lastDateOfRemainingItem) + 1
         }
         return start
+    }
+
+    function getIndexOfDate(date) {
+        let idx
+        notes.forEach((element, index) => {
+            if (element.date == date) {
+                idx = index
+            }
+        });
+        return idx
     }
 }
 
