@@ -1,6 +1,7 @@
 const express = require('express')
 const fs = require('fs')
 const Notes = require('./Notes')
+const hash = require('./hash')
 
 const app = express()
 const notes = new Notes()
@@ -54,7 +55,7 @@ app.post('/login', (req, res) => {
 
     let clientInfo = req.body
 
-    if (authInfo.username == clientInfo.username && authInfo.password == clientInfo.password) {
+    if (authInfo.username == clientInfo.username && hash(authInfo.password) == clientInfo.passwordHash) {
         res.send({
             status: 'login sucessfully'
         })
