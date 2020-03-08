@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/jasonzhouu/notepad#readme",
   "devDependencies": {
+    "cookie-parser": "^1.4.4",
     "express": "^4.17.1"
   }
 }

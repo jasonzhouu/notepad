@@ -74,9 +74,13 @@ DOM将最新的排在最前，notes也将最新的排在最前。
 √ 第三步：网络中不明文传输密码，而是传送密码的hash
 第四步：登录时，后端创建一个随机数，发给前端，前端保存下来，之后的每次请求都要附上这个hash（通过cookie），并对其验证
 √ 1。后端login路由，如果密码验证通过，则生成32位随机数；保存到json文件；返回给前端
-√ 2。前端获得login路由登录成功的消息后，保存随机数到cookie
-3。之后的fetch请求带上cookie，后端从cookie中读取随机数，验证
+√ 2。前端获得login路由登录成功的消息后，保存随机数到cookie，设置expire date
+√ 3。之后的fetch请求带上cookie（默认行为），后端解析cookie
+√ 4。对于需要权限的请求（删除、新建），后端对cookie进行验证：从cookie中读取随机数，从session.json中找是否有匹配的，如果有则返回数据；否则，返回 status: 'failed'
 第五步：支持多账户
+
+@todo: 保存cookie由路由操作 res.cookie http://expressjs.com/en/4x/api.html#res.cookie
+@todo: 改用 res.json() 发送数据 http://expressjs.com/en/4x/api.html#res.json
 
 
 @todo: 改用数据库

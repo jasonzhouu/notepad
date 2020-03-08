@@ -1,5 +1,6 @@
 const express = require('express')
 const fs = require('fs')
+const cookieParser = require('cookie-parser')
 const Notes = require('./Notes')
 const hash = require('./utils/hash')
 const { genRandomNumber, saveRandomNumber } = require('./utils/genRandomNumber')
@@ -20,8 +21,8 @@ app.use(express.json())
 app.use(cookieParser())
 // 3. 静态文件
 app.use(express.static('client'));
-
-
+// 4. 解析cookie
+app.use(cookieParser())
 
 
 /**
@@ -42,22 +43,34 @@ app.post('/notes', (req, res) => {
 // 路由2: 删除note
 // √ 1。建立路由, 将date作为note的唯一标志
 app.delete('/note', (req, res) => {
-    let date = req.body.date
-    // √ 2。交给notes对象，删除内存中的note；删除json中的note；
-    notes.deleteNote(date)
-    res.send({
-        status: 'delete successfully'
-    })
+    if (isAuthorized(req.cookies)) {
+        let date = req.body.date
+        // √ 2。交给notes对象，删除内存中的note；删除json中的note；
+        notes.deleteNote(date)
+        res.send({
+            status: 'delete successfully'
+        })
+    } else {
+        res.send({
+            message: 'failed, need authorization'
+        })
+    }
 })
 
 // 路由3：新建note
 app.post('/addNote', (req, res) => {
-    notes.addNote({
-        ...req.body.note
-    })
-    res.send({
-        status: 'add notes successfully'
-    })
+    if (isAuthorized(req.cookies)) {
+        notes.addNote({
+            ...req.body.note
+        })
+        res.send({
+            status: 'add notes successfully'
+        })
+    } else {
+        res.send({
+            message: 'failed, need authorization'
+        })
+    }
 })
 
 // 路由4：登录
@@ -87,3 +100,9 @@ app.listen(port, () => {
     console.log(`Example app listening on port ${port}!`)
 })
 
+function isAuthorized(cookie) {
+    const jsonPath = './session.json'
+    let rawData = fs.readFileSync(jsonPath);
+    let session = JSON.parse(rawData)
+    return session.includes(cookie.randomNumber)
+}
