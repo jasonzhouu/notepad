@@ -3,6 +3,7 @@ body {
     margin: 0 auto;
     font-size: 18px;
     font-family: sans-serif;
+    position: relative;
 }
 
 body > h1 {
@@ -125,4 +126,18 @@ textarea#noteEditor {
     color: #555;
     padding: 50px;
     text-align: center;
+}
+
+
+#dialog {
+    position: fixed;
+    right: 0;
+    top: 0;
+}
+
+#dialog > div {
+    margin: 1em;
+    padding: 1em;
+    border: 1px solid #8ED0F8;
+    border-radius: 5px;
 }

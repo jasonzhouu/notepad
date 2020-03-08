@@ -2,6 +2,7 @@ import audoTextareaRows from './audoTextareaRows.js'
 import loadNextPageInBottom from './loadNextPage.js'
 import { getNotesAPI, postNoteAPI, deleteNoteAPI } from './fetchAPI.js'
 import parseDate from './parseDate.js'
+import showDialog from './utils/showDialog.js'
 
 export default function Notes() {
     let notes = [];
@@ -21,9 +22,8 @@ export default function Notes() {
                 document.querySelector('#markdownPreview').innerHTML = ''
                 audoTextareaRows()
             }).catch(error => {
-                // @todo: 由打印消息，改成弹窗提示
-                console.log('发布失败')
-                console.info(error)
+                // @done: 由打印消息，改成弹窗提示
+                showDialog('发布失败 <br>'+error.toString())
             })
     }
 
@@ -108,9 +108,8 @@ export default function Notes() {
 
                 loadNextPageInBottom(self)
             }).catch(error => {
-                console.log('删除失败')
-                // @todo: 由打印消息，改成弹窗提示
-                console.info(error)
+                // @done: 由打印消息，改成弹窗提示
+                showDialog('删除失败 <br>'+error.toString())
             })
     }
     function renderMarkdown(text) {
