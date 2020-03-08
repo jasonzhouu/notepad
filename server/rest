@@ -1,6 +1,19 @@
 GET http://localhost:3000
 
 
+
+###
+
+
+POST http://localhost:3000/note
+content-type: application/json
+
+{
+    "date": "1583666724457"
+}
+
+
+
 ### 
 
 
