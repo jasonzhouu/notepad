@@ -48,7 +48,7 @@ body > h1 {
     margin-bottom: -1px;
     margin-top: 0px;
     overflow: hidden;
-    transition: background-color 1s;
+    transition: background-color 0.5s;
     position: relative;
 }
 #notesList > ul > li:hover {
@@ -70,19 +70,17 @@ body > h1 {
     font-size: 1.5rem;
     width: 2.2rem;
     height: 2.2rem;
-    background-color: inherit;
+    background-color: white;
     float: right;
     border-radius: 50%;
     outline: none;
     border: none;
-    transition: all 0.2s;
     cursor: pointer;
     user-select: none;
 }
 
 #notesList > ul > li > button:hover {
     color: #E45884;
-    background-color: white;
 }
 
 
