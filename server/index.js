@@ -2,6 +2,7 @@ const express = require('express')
 const fs = require('fs')
 const Notes = require('./Notes')
 const hash = require('./utils/hash')
+const { genRandomNumber, saveRandomNumber } = require('./utils/genRandomNumber')
 
 const app = express()
 const notes = new Notes()
@@ -56,7 +57,10 @@ app.post('/login', (req, res) => {
     let clientInfo = req.body
 
     if (authInfo.username == clientInfo.username && hash(authInfo.password) == clientInfo.passwordHash) {
+        let randomNumber = genRandomNumber(32)
+        saveRandomNumber(randomNumber)
         res.send({
+            randomNumber,
             status: 'login sucessfully'
         })
     } else {
