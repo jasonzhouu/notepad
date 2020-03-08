@@ -6,7 +6,7 @@ body {
     position: relative;
 }
 
-body > h1 {
+body > a > h1 {
     position: fixed;
     left: 0px;
     top: 2em;
@@ -20,7 +20,7 @@ body > h1 {
     user-select: none;  /* 禁止选中  https://developer.mozilla.org/en-US/docs/Web/CSS/user-select  */
 }
 
-body > h1:hover {
+body > a > h1:hover {
     cursor: pointer;
     background-color: #E8F5FE;
 }
@@ -52,7 +52,8 @@ body > h1:hover {
     margin-bottom: -1px;
     margin-top: 0px;
     overflow: hidden;
-    transition: background-color 2s;
+    transition: background-color 0.2s;
+    cursor: pointer;
     position: relative;
 }
 #notesList > ul > li:hover {
@@ -74,7 +75,8 @@ body > h1:hover {
     font-size: 1.5rem;
     width: 2.2rem;
     height: 2.2rem;
-    background-color: white;
+    color: rgb(101, 119, 134);
+    background-color: inherit;
     float: right;
     border-radius: 50%;
     outline: none;
@@ -84,7 +86,8 @@ body > h1:hover {
 }
 
 #notesList > ul > li > button:hover {
-    color: #E45884;
+    color: #1DA1F2;
+    background-color: #E8F5FE;
 }
 
 
