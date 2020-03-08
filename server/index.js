@@ -55,31 +55,29 @@ app.post('/notes', (req, res) => {
 // 路由2: 删除note
 // √ 1。建立路由, 将date作为note的唯一标志
 app.delete('/note', (req, res) => {
-    if (isAuthorized(req.cookies)) {
+    authorizationHandler(req, () => {
         let date = req.body.date
         // √ 2。交给notes对象，删除内存中的note；删除json中的note；
         notes.deleteNote(date)
         res.send({
             message: 'delete successfully'
         })
-    } else {
-        res.sendStatus(401).send()
-    }
+    })
 })
+
 
 // 路由3：新建note
 app.post('/addNote', (req, res) => {
-    if (isAuthorized(req.cookies)) {
+    authorizationHandler(req, () => {
         notes.addNote({
             ...req.body.note
         })
         res.send({
             message: 'add notes successfully'
         })
-    } else {
-        res.sendStatus(401).send()
-    }
+    })
 })
+
 
 // 路由4：登录
 app.post('/login', (req, res) => {
@@ -107,6 +105,15 @@ app.post('/login', (req, res) => {
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}!`)
 })
+
+
+function authorizationHandler(req, handler) {
+    if (isAuthorized(req.cookies)) {
+        handler()
+    } else {
+        res.sendStatus(401).send()
+    }
+}
 
 function isAuthorized(cookie) {
     const jsonPath = './session.json'
