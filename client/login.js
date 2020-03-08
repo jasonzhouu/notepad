@@ -19,10 +19,11 @@ function login(username, password) {
             })
         }).then(reponse => reponse.json())
             .then(data => {
-                let { status } = data
+                let { status, randomNumber } = data
                 console.log(status)
                 if (status == 'login sucessfully') {
                     localStorage.setItem('login', 'true')
+                    saveRandomNumberToCookie(randomNumber)
                     show()
                 }
             })
@@ -54,4 +55,8 @@ async function hash(message) {
     const hashArray = Array.from(new Uint8Array(hashBuffer));                     // convert buffer to byte array
     const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); // convert bytes to hex string
     return hashHex;
+}
+
+function saveRandomNumberToCookie(randomNumber) {
+    document.cookie = `randomNumber=${randomNumber}`;
 }
