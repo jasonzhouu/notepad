@@ -8,14 +8,27 @@ const app = express()
 const notes = new Notes()
 const port = 3000
 
+/**
+ * ====================================================
+ *                  中间件 
+ * ====================================================
+ */
 
-
-app.use(express.json()) // for parsing application/json
-
-
-// 静态文件
+// 1. for parsing application/json
+app.use(express.json())
+// 2. 解析cookie
+app.use(cookieParser())
+// 3. 静态文件
 app.use(express.static('client'));
 
+
+
+
+/**
+ * ====================================================
+ *                  路由 
+ * ====================================================
+ */
 
 // 路由1：请求一些notes数据
 app.post('/notes', (req, res) => {
@@ -36,7 +49,6 @@ app.delete('/note', (req, res) => {
         status: 'delete successfully'
     })
 })
-
 
 // 路由3：新建note
 app.post('/addNote', (req, res) => {
