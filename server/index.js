@@ -1,4 +1,5 @@
 const express = require('express')
+const fs = require('fs')
 const Notes = require('./Notes')
 
 const app = express()
@@ -30,7 +31,7 @@ app.delete('/note', (req, res) => {
     // √ 2。交给notes对象，删除内存中的note；删除json中的note；
     notes.deleteNote(date)
     res.send({
-        status: 'delete success'
+        status: 'delete successfully'
     })
 })
 
@@ -41,8 +42,27 @@ app.post('/addNote', (req, res) => {
         ...req.body.note
     })
     res.send({
-        status: 'add notes success'
+        status: 'add notes successfully'
     })
+})
+
+// 路由4：登录
+app.post('/login', (req, res) => {
+    const jsonPath = './auth.json'
+    let rawData = fs.readFileSync(jsonPath);
+    let authInfo = JSON.parse(rawData)
+
+    let clientInfo = req.body
+
+    if (authInfo.username == clientInfo.username && authInfo.password == clientInfo.password) {
+        res.send({
+            status: 'login sucessfully'
+        })
+    } else {
+        res.send({
+            status: 'login failed'
+        })
+    }
 })
 
 

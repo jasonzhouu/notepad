@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs')
 
 function Notes() {
     // @todo: 如果notes规模太大，会有性能问题。后续改为 Redis 数据库。
