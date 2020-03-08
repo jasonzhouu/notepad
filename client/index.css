@@ -16,7 +16,7 @@ body > h1 {
     font-weight: 100;
     background: #8ED0F8;
     color: white;
-    border-radius: 0 50px 50px 0;
+    border-radius: 0 20px 20px 0;
     text-transform: uppercase;
     user-select: none;  /* 禁止选中  https://developer.mozilla.org/en-US/docs/Web/CSS/user-select  */
 }
@@ -138,6 +138,9 @@ textarea#noteEditor {
 #dialog > div {
     margin: 1em;
     padding: 1em;
-    border: 1px solid #8ED0F8;
+    font-size: 1rem;
+    color: #721c24;
+    background-color: #F8D7DA;
+    border: 1px solid #f5c6cb;
     border-radius: 5px;
 }
