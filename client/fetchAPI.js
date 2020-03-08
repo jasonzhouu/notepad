@@ -18,7 +18,20 @@ const fetchAPI = (url, method) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
-        }).then(reponse => reponse.json())
+        })
+        .then(response => {
+            /**
+             * 捕捉错误，参考：https://github.com/github/fetch/issues/201#issuecomment-308213104
+             * 让后面直接进入catch部分执行；
+             */
+
+            // 如果正常，则返回数据，正常处理
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw Error(response.statusText);
+            }
+        })
     }
 }
 

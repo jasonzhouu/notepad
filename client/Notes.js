@@ -13,13 +13,17 @@ export default function Notes() {
     this.publishNote = function (note) {
         postNoteAPI({note})
             .then(data => {
-                console.log(data.status)
+                console.log(data.message)
                 document.querySelector('#noteEditor').value = ""
                 notes.unshift(note)
                 showNewlyPublishedNote(note)
                 localStorage.setItem('textarea', '')
                 document.querySelector('#markdownPreview').innerHTML = ''
                 audoTextareaRows()
+            }).catch(error => {
+                // @todo: 由打印消息，改成弹窗提示
+                console.log('发布失败')
+                console.info(error)
             })
     }
 
@@ -88,7 +92,7 @@ export default function Notes() {
         deleteNoteAPI({date})
             // 3。后端返回成功删除数据的消息后：
             .then(data => {
-                console.log(data.status)
+                console.log(data.message)
                 // 3。1找到对应note在notes列表中的序号，删除对应的数据
                 let index
                 notes.forEach((ele, idx) => {
@@ -103,6 +107,10 @@ export default function Notes() {
                 )
 
                 loadNextPageInBottom(self)
+            }).catch(error => {
+                console.log('删除失败')
+                // @todo: 由打印消息，改成弹窗提示
+                console.info(error)
             })
     }
     function renderMarkdown(text) {

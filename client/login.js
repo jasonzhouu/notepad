@@ -19,9 +19,9 @@ function login(username, password) {
             })
         }).then(reponse => reponse.json())
             .then(data => {
-                let { status, randomNumber } = data
-                console.log(status)
-                if (status == 'login sucessfully') {
+                let { message, randomNumber } = data
+                console.log(message)
+                if (message == 'login sucessfully') {
                     localStorage.setItem('login', 'true')
                     saveRandomNumberToCookie(randomNumber)
                     show()

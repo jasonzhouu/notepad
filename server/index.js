@@ -48,12 +48,10 @@ app.delete('/note', (req, res) => {
         // √ 2。交给notes对象，删除内存中的note；删除json中的note；
         notes.deleteNote(date)
         res.send({
-            status: 'delete successfully'
+            message: 'delete successfully'
         })
     } else {
-        res.send({
-            message: 'failed, need authorization'
-        })
+        res.sendStatus(401).send()
     }
 })
 
@@ -64,12 +62,10 @@ app.post('/addNote', (req, res) => {
             ...req.body.note
         })
         res.send({
-            status: 'add notes successfully'
+            message: 'add notes successfully'
         })
     } else {
-        res.send({
-            message: 'failed, need authorization'
-        })
+        res.sendStatus(401).send()
     }
 })
 
@@ -86,11 +82,11 @@ app.post('/login', (req, res) => {
         saveRandomNumber(randomNumber)
         res.send({
             randomNumber,
-            status: 'login sucessfully'
+            message: 'login sucessfully'
         })
     } else {
         res.send({
-            status: 'login failed'
+            message: 'login failed'
         })
     }
 })
