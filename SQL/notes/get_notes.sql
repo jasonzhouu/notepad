@@ -1,0 +1,1 @@
+select * from test.notes where user_id = 1;
