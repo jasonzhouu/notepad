@@ -1,4 +1,4 @@
-const createConnection = require('./createConnection.js')
+const createConnection = require('../createConnection.js')
 
 const connection = createConnection()
 
