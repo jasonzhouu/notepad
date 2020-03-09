@@ -6,3 +6,4 @@ notes.json
 
 auth.json
 session.json
+config/database.json
