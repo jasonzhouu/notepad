@@ -91,6 +91,15 @@ body > a > h1:hover {
     border-radius: 3px;
 }
 
+#notesList blockquote {
+    border-left: 5px lightgrey solid;
+    padding-left: 15px;
+    margin-left: 20px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    background: #f4f4f4;
+}
+
 /* 发布时间 */
 #notesList > ul > li > span {
     color: #999;
