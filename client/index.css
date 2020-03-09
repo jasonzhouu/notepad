@@ -77,8 +77,13 @@ body > a > h1:hover {
 #notesList pre {
     margin: 30px 0;
     border: 1px solid #d5d5e9;
-    padding: 8px 12px;
+    padding: 16px;
+    line-height: 1.45;
     white-space: pre-wrap; /* 长行不溢出 */
+}
+
+#notesList code {
+    padding: 0.2em 0.4em;
 }
 
 #notesList pre, #notesList code {
