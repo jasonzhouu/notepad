@@ -63,7 +63,6 @@ function Database() {
         )
     }
 
-    // @todo: 验证用户 authenticateUser()
     /**
      * 验证用户
      */

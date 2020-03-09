@@ -18,6 +18,7 @@ export default function Notes() {
                 document.querySelector('#noteEditor').value = ""
                 notes.unshift(note)
                 showNewlyPublishedNote(note)
+                // 确认发布之后再清理本地存的数据
                 localStorage.setItem('textarea', '')
                 document.querySelector('#markdownPreview').innerHTML = ''
                 audoTextareaRows()
