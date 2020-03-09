@@ -81,7 +81,7 @@ app.post('/addNote', (req, res) => {
 
 // 路由4：登录
 app.post('/login', (req, res) => {
-    const jsonPath = './auth.json'
+    const jsonPath = './config/auth.json'
     let rawData = fs.readFileSync(jsonPath);
     let authInfo = JSON.parse(rawData)
 
@@ -125,7 +125,7 @@ function authorizationHandler({req, res}, handler) {
 }
 
 function isAuthorized(cookie) {
-    const jsonPath = './session.json'
+    const jsonPath = './config/session.json'
     let rawData = fs.readFileSync(jsonPath);
     let session = JSON.parse(rawData)
     return session.includes(cookie.randomNumber)

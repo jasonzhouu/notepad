@@ -14,7 +14,7 @@ function genRandomNumber(length) {
 };
 
 function saveRandomNumber(randomNumber) {
-    const jsonPath = './session.json'
+    const jsonPath = './config/session.json'
     let rawData = fs.readFileSync(jsonPath);
     let session = JSON.parse(rawData)
     session.push(randomNumber)
