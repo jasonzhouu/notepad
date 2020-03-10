@@ -101,7 +101,7 @@ function Database() {
     }
 
     /**
-     * 获取一页笔记（10条）
+     * 获取一页notes（10条）
      * @interface
      * @param {object}
      */
@@ -121,6 +121,21 @@ function Database() {
                 notes: results,
                 isLastPage
             }
+        })
+    }
+
+    /**
+     * 删除note
+     * @interface
+     * @param {number} id
+     */
+    this.deleteNote = (note_id) => {
+        connection.query({
+            sql: 'delete from notes where note_id = ?',
+            values: [note_id]
+        }, (error, result) => {
+            if(error) throw error
+            return true
         })
     }
 
